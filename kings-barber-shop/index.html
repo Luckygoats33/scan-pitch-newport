@@ -27,8 +27,7 @@
 ::selection{background:rgba(139,45,32,.2);color:var(--ink)}
 ::-moz-selection{background:rgba(139,45,32,.2);color:var(--ink)}
 html{scroll-behavior:smooth;scroll-padding-top:68px}
-body{font-family:var(--bd);background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;cursor:none}
-a,button{cursor:none}
+body{font-family:var(--bd);background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 
 /* ═══ PRELOADER ═══ */
 .loader{position:fixed;inset:0;z-index:10000;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s,visibility .6s}
@@ -43,12 +42,6 @@ a,button{cursor:none}
 
 body::before{content:'';position:fixed;top:0;left:0;right:0;height:3px;z-index:200;background:repeating-linear-gradient(90deg,var(--red) 0 33.33%,#fff 33.33% 66.66%,var(--blue) 66.66% 100%)}
 
-/* ═══ CUSTOM CURSOR ═══ */
-.cursor{position:fixed;top:0;left:0;width:12px;height:12px;border-radius:50%;background:var(--red);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .3s,height .3s,background .3s,opacity .3s;mix-blend-mode:difference;opacity:0}
-.cursor.active{opacity:1}
-.cursor.hover{width:48px;height:48px;background:rgba(139,45,32,.12);border:1px solid var(--red)}
-.cursor-dot{position:fixed;top:0;left:0;width:4px;height:4px;border-radius:50%;background:var(--red);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);opacity:0}
-.cursor-dot.active{opacity:1}
 
 .grain{position:fixed;inset:0;z-index:9997;pointer-events:none;opacity:0;mix-blend-mode:multiply}
 .grain svg{width:100%;height:100%}
@@ -79,9 +72,6 @@ body.loaded .grain{opacity:.03;transition:opacity 1s}
 .k-about-txt{display:flex;flex-direction:column;justify-content:center;padding:clamp(3rem,6vw,6rem) clamp(2.5rem,4vw,4rem) clamp(3rem,6vw,6rem) clamp(2rem,3vw,3rem)}
 .k-about-sig{margin-top:1.5rem;font-family:var(--hd);font-style:italic;font-size:.85rem;color:var(--red)}
 @media(max-width:900px){.k-about{grid-template-columns:1fr}.k-about-img{height:50vw;max-height:380px}.k-about-img::after{background:linear-gradient(180deg,transparent 60%,var(--bg) 100%)}}
-
-/* ═══ CTA CANVAS ═══ */
-.cta-canvas{position:absolute;inset:0;z-index:1;pointer-events:none}
 
 /* ═══ SVC CARD NUMBERS ═══ */
 .svc-num{font-family:var(--hd);font-size:clamp(2.5rem,5vw,3.5rem);color:var(--red);opacity:.1;line-height:1;margin-bottom:.5rem;letter-spacing:-.02em}
@@ -213,7 +203,6 @@ body.loaded .grain{opacity:.03;transition:opacity 1s}
 .sticky-row .s-book{background:transparent;color:var(--ink);border:1px solid var(--bdr)}.sticky-row .s-book:hover{border-color:var(--red);color:var(--red)}
 body{padding-bottom:56px}
 /* ═══ FOOTER — Premium ═══ */
-.wave-cv{position:absolute;inset:0;z-index:1;pointer-events:none}
 .ftr-glow{position:absolute;top:-80px;left:50%;width:500px;height:180px;transform:translateX(-50%);background:radial-gradient(ellipse,rgba(139,45,32,.06),transparent 70%);pointer-events:none}
 .ftr{position:relative;overflow:hidden;background:var(--ink);padding:0}
 .ftr-stripe{position:absolute;top:0;left:0;right:0;height:3px;background:repeating-linear-gradient(90deg,var(--red) 0 33.33%,#fff 33.33% 66.66%,var(--blue) 66.66% 100%)}
@@ -274,10 +263,6 @@ body{padding-bottom:56px}
 .k-gallery-hint{padding:1.5rem clamp(2rem,5vw,4rem) 0;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mut);display:flex;align-items:center;gap:.5rem}
 .k-gallery-hint::before{content:'';width:20px;height:1px;background:var(--mut)}
 
-/* ═══ HERO CANVAS ═══ */
-#hero-particles{position:absolute;inset:0;z-index:2;pointer-events:none}
-.aurora-cv{position:absolute;inset:0;z-index:1;pointer-events:none}
-
 /* RESPONSIVE */
 @media(max-width:900px){
   .hero{grid-template-columns:1fr;min-height:auto}.hero-iw{height:50vw;max-height:380px}.hero-fade{display:none}.hero-txt{padding:5rem 2rem 3rem}
@@ -285,11 +270,9 @@ body{padding-bottom:56px}
   .visit-grid{grid-template-columns:1fr}.scroll-cue{left:50%}
 }
 @media(max-width:640px){
-  body{cursor:auto}a,button{cursor:auto}.cursor,.cursor-dot{display:none}
   .nav{padding:.6rem 1.25rem}.nav-l{gap:1rem}.nav-l a{font-size:.58rem;letter-spacing:.1em}
   .scroll-cue{display:none}.svc-hint{display:none}
   .hero-btns{flex-direction:column}
-  #hero-particles,.k-aurora,.wave-cv,.ftr-glow{display:none}
 }
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important}
@@ -318,8 +301,6 @@ body{padding-bottom:56px}
 
 <svg class="grain" aria-hidden="true"><filter id="g"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="4" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#g)"/></svg>
 
-<div class="cursor" id="cursor"></div>
-<div class="cursor-dot" id="cursor-dot"></div>
 
 <nav class="nav" role="navigation">
   <div class="nav-b">King&rsquo;s Barber Shop</div>
@@ -347,7 +328,7 @@ body{padding-bottom:56px}
       <div class="hero-stat"><strong>Tue&ndash;Sat</strong>Walk-ins Welcome</div>
     </div>
   </div>
-  <div class="hero-iw"><img fetchpriority="high" src="images/inside-kings-barber-shop.webp" alt="Inside King's Barber Shop" width="1344" height="768"><div class="hero-fade"></div><canvas id="hero-particles"></canvas></div>
+  <div class="hero-iw"><img fetchpriority="high" src="images/inside-kings-barber-shop.webp" alt="Inside King's Barber Shop" width="1344" height="768"><div class="hero-fade"></div></div>
   <div class="scroll-cue"><span>Scroll</span><div class="scroll-ln"></div></div>
 </section>
 
@@ -440,7 +421,6 @@ body{padding-bottom:56px}
 <!-- ═══ 6. REVIEWS — Featured + staggered ═══ -->
 <section class="cin clip-rv" id="reviews">
   <div class="cin-bg"><img src="images/storefront.webp" alt="King's Barber Shop storefront" width="1344" height="768" loading="lazy" style="animation:kb2 22s ease-in-out infinite alternate-reverse;filter:brightness(.3)saturate(.8)"></div>
-  <canvas class="aurora-cv" id="k-aurora"></canvas>
   <div class="cin-ov ov-center"></div>
   <div class="cin-c">
     <div class="rev-featured rv">
@@ -490,7 +470,6 @@ body{padding-bottom:56px}
 <!-- ═══ 8. CTA ═══ -->
 <section class="cta clip-rv">
   <div class="cta-bg vid-bg"><img src="images/storefront.webp" alt="King's Barber Shop" width="1344" height="768" loading="lazy"></div>
-  <canvas class="cta-canvas" id="cta-particles"></canvas>
   <div class="morph-blob" style="top:15%;left:65%"></div>
   <div class="morph-blob" style="top:55%;left:15%;animation-delay:-5s;width:clamp(200px,35vw,400px);height:clamp(200px,35vw,400px)"></div>
   <div class="cta-c">
@@ -505,7 +484,6 @@ body{padding-bottom:56px}
 <div class="sticky"><div class="sticky-row"><a href="tel:9513784821" class="s-call">Call Now</a><a href="#visit" class="s-book">Book Appointment</a></div></div>
 <footer class="ftr">
   <div class="ftr-stripe"></div>
-  <canvas class="wave-cv" id="ftr-wave-cv" data-color="139,45,32" data-y="0.0" style="height:100px;position:absolute;top:-50px;left:0;right:0;z-index:1;pointer-events:none"></canvas>
   <div class="ftr-glow"></div>
   <div class="ftr-top">
     <div class="ftr-brand">

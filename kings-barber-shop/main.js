@@ -1,47 +1,9 @@
-
-// ── Visibility-gated rAF for canvas perf ──
-(function(){
-  var canvasIds = ['hero-canvas','hero-particles','heritage-canvas',
-                   'cta-particles','k-aurora','ftr-wave-cv'];
-  document.querySelectorAll('.aurora-cv, .wave-cv').forEach(function(c){
-    if(c.id) canvasIds.push(c.id);
-  });
-  var visMap = new Map();
-  var obs = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      visMap.set(e.target, e.isIntersecting);
-    });
-  }, {rootMargin: '100px'});
-  canvasIds.forEach(function(id){
-    var el = document.getElementById(id);
-    if(el){ obs.observe(el); visMap.set(el, false); }
-  });
-  document.querySelectorAll('.aurora-cv, .wave-cv').forEach(function(el){
-    obs.observe(el); visMap.set(el, false);
-  });
-  window.__cvVis = function(el){ return visMap.get(el) !== false; };
-})();
-
-
 (function(){
   // Preloader
   const lt=document.getElementById('loader-text');
   const name="KING'S BARBER";
   lt.innerHTML=name.split('').map((c,i)=>`<span style="animation-delay:${.3+i*0.05}s">${c===' '?'&nbsp;':c}</span>`).join('');
   setTimeout(()=>{document.getElementById('loader').classList.add('done');document.body.classList.add('loaded')},2400);
-
-  // Custom cursor
-  const cursor=document.getElementById('cursor'),dot=document.getElementById('cursor-dot');
-  let mx=0,my=0,cx=0,cy=0;
-  if(cursor&&window.innerWidth>640){
-    document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.classList.add('active');dot.classList.add('active')});
-    function animC(){cx+=(mx-cx)*.12;cy+=(my-cy)*.12;cursor.style.left=cx+'px';cursor.style.top=cy+'px';dot.style.left=mx+'px';dot.style.top=my+'px';requestAnimationFrame(animC)}
-    animC();
-    document.querySelectorAll('a,button,.svc-card,.rev-card').forEach(el=>{
-      el.addEventListener('mouseenter',()=>cursor.classList.add('hover'));
-      el.addEventListener('mouseleave',()=>cursor.classList.remove('hover'));
-    });
-  }
 
   // Magnetic buttons
   document.querySelectorAll('[data-magnetic]').forEach(btn=>{
@@ -65,27 +27,6 @@
   // Scroll reveal (includes clip-rv)
   const io=new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}});},{threshold:.06,rootMargin:'0px 0px -30px 0px'});
   document.querySelectorAll('.rv,.rv-l,.rv-r,.clip-rv').forEach(el=>io.observe(el));
-
-  // ── CTA PARTICLES — subtle floating motes ──
-  const ctaCv=document.getElementById('cta-particles');
-  if(ctaCv){
-    const ctx2=ctaCv.getContext('2d');let cw2,ch2;const motes=[];
-    function cResize(){cw2=ctaCv.width=ctaCv.parentElement.offsetWidth;ch2=ctaCv.height=ctaCv.parentElement.offsetHeight}
-    cResize();window.addEventListener('resize',cResize);
-    for(let i=0;i<30;i++)motes.push({x:Math.random()*2000,y:Math.random()*1200,vy:-(Math.random()*.25+.08),r:Math.random()*2.5+.8,a:Math.random()*.12+.02,drift:Math.random()*6.28});
-    function drawMotes(){
-      ctx2.clearRect(0,0,cw2,ch2);const t=performance.now()*.001;
-      motes.forEach(m=>{
-        m.y+=m.vy;m.x+=Math.sin(t*.4+m.drift)*.25;
-        if(m.y<-10){m.y=ch2+10;m.x=Math.random()*cw2}
-        const a=m.a*(.5+.5*Math.sin(t*1.8+m.drift));
-        ctx2.beginPath();ctx2.arc(m.x,m.y,m.r,0,6.28);ctx2.fillStyle=`rgba(139,45,32,${a})`;ctx2.fill();
-        ctx2.beginPath();ctx2.arc(m.x,m.y,m.r*3.5,0,6.28);ctx2.fillStyle=`rgba(139,45,32,${a*.06})`;ctx2.fill();
-      });
-      requestAnimationFrame(drawMotes);
-    }
-    drawMotes();
-  }
 
   // ── MOMENTUM GALLERY ──
   function initMG(id){
@@ -127,24 +68,6 @@
     els.forEach(el=>sObs.observe(el));
   })();
 
-  // ── CURSOR TRAIL PARTICLES ──
-  (function(){
-    if(window.innerWidth<=640)return;
-    const cv=document.createElement('canvas');cv.style.cssText='position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9998;';
-    document.body.appendChild(cv);const ctx=cv.getContext('2d');
-    const dpr=window.devicePixelRatio||1;
-    function sz(){cv.width=window.innerWidth*dpr;cv.height=window.innerHeight*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}
-    sz();window.addEventListener('resize',sz,{passive:true});
-    let mx=-100,my=-100,last=0;const P=[];
-    document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY},{passive:true});
-    function tick(now){
-      requestAnimationFrame(tick);ctx.clearRect(0,0,cv.width,cv.height);
-      if(now-last>=40&&mx>0){const a=Math.random()*6.28,sp=Math.random()*.6;P.push({x:mx,y:my,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,r:2+Math.random()*2,born:now});if(P.length>50)P.shift();last=now}
-      let alive=[];for(let i=0;i<P.length;i++){const p=P[i],age=now-p.born;if(age>=600)continue;const t=age/600;p.x+=p.vx;p.y+=p.vy;ctx.beginPath();ctx.arc(p.x,p.y,Math.max(p.r*(1-t*.7),.5),0,6.28);ctx.fillStyle=`rgba(139,45,32,${(1-t).toFixed(3)})`;ctx.fill();alive.push(p)}P.length=0;P.push(...alive);
-    }
-    requestAnimationFrame(tick);
-  })();
-
   // ── IMAGE WIPE REVEAL ──
   (function(){
     const sty=document.createElement('style');sty.textContent='.img-wipe{clip-path:inset(0 100% 0 0);transition:clip-path 1.2s cubic-bezier(.16,1,.3,1);will-change:clip-path}.img-wipe[data-wipe="right"]{clip-path:inset(0 0 0 100%)}.img-wipe[data-wipe="up"]{clip-path:inset(100% 0 0 0)}.img-wipe.is-revealed{clip-path:inset(0 0 0 0)!important}';
@@ -162,43 +85,6 @@
     }
     window.addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(check)}},{passive:true});
     requestAnimationFrame(check);
-  })();
-
-  // ── AURORA CANVAS — crimson waves ──
-  (function(){
-    const cv=document.getElementById('k-aurora');if(!cv)return;
-    const ctx=cv.getContext('2d');let w,h;
-    function sz(){w=cv.width=cv.parentElement.offsetWidth;h=cv.height=cv.parentElement.offsetHeight}
-    sz();window.addEventListener('resize',sz);
-    const layers=[{speed:.0004,freq:1.2,amp:.35,phase:0,hue:0,op:.025},{speed:.0006,freq:.8,amp:.3,phase:1.5,hue:8,op:.03},{speed:.0003,freq:1.5,amp:.25,phase:3,hue:14,op:.035},{speed:.0005,freq:1,amp:.4,phase:4.5,hue:20,op:.02}];
-    function draw(time){
-      ctx.clearRect(0,0,w,h);
-      layers.forEach(L=>{const t=time*L.speed+L.phase;ctx.beginPath();ctx.moveTo(0,h);
-        for(let x=0;x<=w;x+=4){const nx=x/w;const y=h*.5+Math.sin(nx*Math.PI*2*L.freq+t)*h*L.amp*.5+Math.sin(nx*Math.PI*3.7+t*1.3)*h*L.amp*.25+Math.sin(nx*Math.PI*.5+t*.7)*h*L.amp*.15;ctx.lineTo(x,y)}
-        ctx.lineTo(w,h);ctx.closePath();const g=ctx.createLinearGradient(0,0,w,h);g.addColorStop(0,`hsla(${L.hue},85%,35%,${L.op})`);g.addColorStop(.5,`hsla(${L.hue+5},90%,25%,${L.op*1.2})`);g.addColorStop(1,`hsla(${L.hue+10},80%,30%,${L.op*.8})`);ctx.fillStyle=g;ctx.fill();
-      });requestAnimationFrame(draw);
-    }
-    requestAnimationFrame(draw);
-  })();
-
-  // ── WAVE CANVAS (footer) ──
-  (function(){
-    const cv=document.getElementById('ftr-wave-cv');if(!cv)return;
-    const ctx=cv.getContext('2d');const color=cv.dataset.color||'139,45,32';
-    const yS=parseFloat(cv.dataset.y)||0;let cw,ch;
-    function sz(){cw=cv.width=cv.parentElement.offsetWidth;ch=cv.height=cv.parentElement.offsetHeight}
-    sz();window.addEventListener('resize',sz);
-    function drawW(){
-      ctx.clearRect(0,0,cw,ch);const t=performance.now()*.0006;
-      for(let l=0;l<4;l++){
-        ctx.beginPath();const amp=ch*(.05+l*.025);const freq=.004-l*.0005;const spd=t*(1+l*.2);
-        const yB=ch*yS+l*ch*.07;ctx.moveTo(0,ch);
-        for(let x=0;x<=cw;x+=3){const y=yB+Math.sin(x*freq+spd)*amp+Math.sin(x*freq*2.1+spd*1.5)*amp*.3;ctx.lineTo(x,y)}
-        ctx.lineTo(cw,ch);ctx.closePath();ctx.fillStyle=`rgba(${color},${.035+l*.02})`;ctx.fill();
-      }
-      requestAnimationFrame(drawW);
-    }
-    drawW();
   })();
 
   // Parallax
@@ -252,28 +138,6 @@
       pct+=speed;if(pct>=100){pct=100;clearInterval(pctInt)}
       pctEl.textContent=Math.floor(pct);
     },30);
-  }
-
-  // ── HERO PARTICLES — subtle red motes in hero image ──
-  const heroCanvas=document.getElementById('hero-particles');
-  if(heroCanvas){
-    const hctx=heroCanvas.getContext('2d');let hw,hh;const dots=[];
-    function hResize(){hw=heroCanvas.width=heroCanvas.parentElement.offsetWidth;hh=heroCanvas.height=heroCanvas.parentElement.offsetHeight}
-    hResize();window.addEventListener('resize',hResize);
-    const nd=window.innerWidth<640?15:35;
-    for(let i=0;i<nd;i++)dots.push({x:Math.random()*2000,y:Math.random()*1200,vy:-(Math.random()*.2+.05),r:Math.random()*2.5+.5,a:Math.random()*.1+.02,drift:Math.random()*6.28});
-    function drawH(){
-      hctx.clearRect(0,0,hw,hh);const t=performance.now()*.001;
-      dots.forEach(d=>{
-        d.y+=d.vy;d.x+=Math.sin(t*.3+d.drift)*.3;
-        if(d.y<-10){d.y=hh+10;d.x=Math.random()*hw}
-        const a=d.a*(.5+.5*Math.sin(t*1.5+d.drift));
-        hctx.beginPath();hctx.arc(d.x,d.y,d.r,0,6.28);hctx.fillStyle=`rgba(139,45,32,${a})`;hctx.fill();
-        hctx.beginPath();hctx.arc(d.x,d.y,d.r*4,0,6.28);hctx.fillStyle=`rgba(139,45,32,${a*.06})`;hctx.fill();
-      });
-      requestAnimationFrame(drawH);
-    }
-    drawH();
   }
 
   // ── 3D TILT CARDS ──

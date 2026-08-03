@@ -22,8 +22,7 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:56px}
-body{font-family:var(--bd);background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased;cursor:none}
-a,button{cursor:none}
+body{font-family:var(--bd);background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 
 /* ═══ PRELOADER ═══ */
 .loader{position:fixed;inset:0;z-index:10000;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s,visibility .6s}
@@ -36,12 +35,6 @@ a,button{cursor:none}
 @keyframes loadFill{to{transform:translateX(0)}}
 .loader-sub{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--mut);margin-top:1.5rem;opacity:0;animation:fu .6s 1s var(--ease) forwards}
 
-/* ═══ CUSTOM CURSOR ═══ */
-.cursor{position:fixed;top:0;left:0;width:12px;height:12px;border-radius:50%;background:var(--gold);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .3s,height .3s,background .3s,opacity .3s;mix-blend-mode:difference;opacity:0}
-.cursor.active{opacity:1}
-.cursor.hover{width:48px;height:48px;background:rgba(200,165,92,.15);border:1px solid var(--gold)}
-.cursor-dot{position:fixed;top:0;left:0;width:4px;height:4px;border-radius:50%;background:var(--gold);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);opacity:0}
-.cursor-dot.active{opacity:1}
 
 /* ═══ SELECTION ═══ */
 ::selection{background:rgba(200,165,92,.25);color:#fff}
@@ -109,7 +102,6 @@ body.loaded .grain{opacity:.04;transition:opacity 1s}
 .hero-bg{position:absolute;inset:0}
 .hero-bg img{width:100%;height:100%;object-fit:cover;animation:kb1 30s ease-out forwards;filter:brightness(.75)saturate(1.1)}
 .hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(9,12,15,.15) 0%,transparent 25%,rgba(9,12,15,.35) 55%,rgba(9,12,15,.98) 90%),radial-gradient(ellipse at 20% 80%,rgba(200,165,92,.1),transparent 45%)}
-#hero-canvas{position:absolute;inset:0;z-index:2;pointer-events:none}
 .hero-c{position:absolute;bottom:0;left:0;right:0;z-index:3;padding:0 clamp(2rem,5vw,4rem) clamp(3rem,6vw,5rem)}
 .hero-ey{font-size:.6rem;letter-spacing:.6em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;opacity:0;animation:fu .8s 2.2s var(--ease) forwards;display:flex;align-items:center;gap:1rem}
 .hero-ey::before{content:'';width:40px;height:1px;background:var(--gold)}
@@ -151,7 +143,6 @@ body.loaded .grain{opacity:.04;transition:opacity 1s}
 .ent{position:relative;min-height:100vh;min-height:100dvh;overflow:hidden;display:flex;align-items:center}
 .ent-bg{position:absolute;inset:0}.ent-bg img{width:100%;height:100%;object-fit:cover;animation:kb3 28s ease-in-out infinite alternate;filter:brightness(.6)}
 .ent-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(9,12,15,.92) 0%,rgba(9,12,15,.6) 50%,rgba(9,12,15,.85) 100%)}
-.aurora-cv{position:absolute;inset:0;z-index:1;pointer-events:none}
 .ent-c{position:relative;z-index:2;width:100%;max-width:1200px;margin:0 auto;padding:clamp(5rem,10vw,8rem) clamp(2rem,5vw,4rem);display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
 .ent-left{max-width:420px}
 .ent-cards{display:flex;flex-direction:column;gap:1rem}
@@ -167,7 +158,6 @@ body.loaded .grain{opacity:.04;transition:opacity 1s}
 .heritage{position:relative;min-height:100vh;min-height:100dvh;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .heritage-bg{position:absolute;inset:0}.heritage-bg img{width:100%;height:100%;object-fit:cover;filter:brightness(.25)saturate(.7);animation:kb3 28s ease-in-out infinite alternate}
 .heritage-bg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(9,12,15,.3),rgba(9,12,15,.88) 60%)}
-.heritage-canvas{position:absolute;inset:0;z-index:1;pointer-events:none}
 .heritage-c{position:relative;z-index:2;text-align:center;padding:4rem 2rem}
 .heritage-counter{font-family:var(--hd);font-size:clamp(10rem,30vw,22rem);color:transparent;-webkit-text-stroke:1.5px rgba(200,165,92,.18);line-height:.85;letter-spacing:-.04em;margin-bottom:1rem;transition:all 1.5s var(--ease)}
 .heritage-counter.vis{-webkit-text-stroke-color:rgba(200,165,92,.35)}
@@ -240,7 +230,6 @@ body.loaded .grain{opacity:.04;transition:opacity 1s}
 .cta{position:relative;min-height:100vh;min-height:100dvh;overflow:hidden;display:flex;align-items:center;justify-content:center}
 .cta-bg{position:absolute;inset:0}.cta-bg img{width:100%;height:100%;object-fit:cover;animation:kb1 25s ease-in-out infinite alternate;filter:brightness(.45)saturate(1.1)}
 .cta-bg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(9,12,15,.55),rgba(9,12,15,.9) 65%)}
-.wave-cv{position:absolute;inset:0;z-index:1;pointer-events:none}
 .cta-c{position:relative;z-index:2;text-align:center;padding:4rem 2rem}
 .cta-phone{display:inline-block;margin-top:1.5rem;font-family:var(--hd);font-size:clamp(2.5rem,7vw,5.5rem);color:var(--gold);text-decoration:none;transition:all .4s var(--ease);letter-spacing:.02em}
 .cta-phone:hover{color:#fff;text-shadow:0 0 60px rgba(200,165,92,.4);transform:scale(1.04)}
@@ -285,7 +274,6 @@ body{padding-bottom:56px}
   .visit-grid{grid-template-columns:1fr}
 }
 @media(max-width:640px){
-  body{cursor:auto}a,button{cursor:auto}.cursor,.cursor-dot{display:none}
   .nav{padding:.6rem 1.25rem}.nav-l{gap:1rem}.nav-l a{font-size:.58rem;letter-spacing:.1em}
   .scroll-cue{display:none}.gallery-hint{display:none}
   .hero-btns{flex-direction:column}
@@ -295,7 +283,6 @@ body{padding-bottom:56px}
   .rv,.rv-l,.rv-r{opacity:1;transform:none}.loader{display:none}
   .hero-bg img,.about-img img,.ent-bg img,.reviews-bg img,.garden-img img,.cta-bg img{animation:none}
   .hero-h1 .char{opacity:1;transform:none}.stats-track{animation:none}
-  #hero-canvas,.aurora-cv,.wave-cv{display:none}
 }
 
 </style>
@@ -318,9 +305,6 @@ body{padding-bottom:56px}
 
 <svg class="grain" aria-hidden="true"><filter id="g"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#g)"/></svg>
 
-<!-- CUSTOM CURSOR -->
-<div class="cursor" id="cursor"></div>
-<div class="cursor-dot" id="cursor-dot"></div>
 
 <nav class="nav" role="navigation">
   <div class="nav-b">Bay Haven Inn</div>
@@ -336,7 +320,6 @@ body{padding-bottom:56px}
 <!-- ═══ 1. HERO ═══ -->
 <section class="hero">
   <div class="hero-bg"><img fetchpriority="high" src="images/bay-haven-inn-waterfront-exterior.webp" alt="Bay Haven Inn waterfront exterior" width="1344" height="768"></div>
-  <canvas id="hero-canvas"></canvas>
   <div class="hero-c">
     <p class="hero-ey">Newport, Oregon &middot; Since 1908</p>
     <h1 class="hero-h1" data-split>Bay Haven Inn</h1>
@@ -384,7 +367,6 @@ body{padding-bottom:56px}
 <!-- ═══ 4. ENTERTAINMENT — Two-column, cards right ═══ -->
 <section class="ent" id="music">
   <div class="ent-bg"><img src="images/live-music-at-bay-haven.webp" alt="Live music at Bay Haven" width="1344" height="768" loading="lazy"></div>
-  <canvas class="aurora-cv" data-hue="40"></canvas>
   <div class="ent-c">
     <div class="ent-left">
       <div class="ey rv">Live Entertainment</div>
@@ -410,7 +392,6 @@ body{padding-bottom:56px}
 <!-- ═══ 5. HERITAGE — Scroll-reactive counter + timeline ═══ -->
 <section class="heritage clip-rv" id="heritage">
   <div class="heritage-bg"><img src="images/newport-harbor-at-golden-hour.webp" alt="Newport Harbor at golden hour" width="1344" height="768" loading="lazy"></div>
-  <canvas class="heritage-canvas" id="heritage-canvas"></canvas>
   <div class="heritage-c">
     <div class="heritage-counter rv" id="yr-counter">1908</div>
     <h2 class="heritage-h rv d1">Newport&rsquo;s Original Bar</h2>
@@ -450,7 +431,6 @@ body{padding-bottom:56px}
 <!-- ═══ 7. REVIEWS — Featured + staggered grid ═══ -->
 <section class="reviews clip-rv" id="reviews">
   <div class="reviews-bg"><img src="images/neon-bar-signs.webp" alt="Neon bar signs" width="1344" height="768" loading="lazy"></div>
-  <canvas class="aurora-cv" data-hue="30" style="z-index:1"></canvas>
   <div class="reviews-c">
     <div class="rev-featured rv">
       <div class="ey" style="justify-content:center">What People Say</div>
@@ -508,7 +488,6 @@ body{padding-bottom:56px}
 <!-- ═══ 10. CTA — Dramatic finale ═══ -->
 <section class="cta">
   <div class="cta-bg vid-bg"><img src="images/oregon-coast.webp" alt="Oregon coast waves" width="1344" height="768" loading="lazy"></div>
-  <canvas class="wave-cv" data-color="200,165,92" data-y="0.6"></canvas>
   <div class="morph-blob" style="top:20%;left:60%"></div>
   <div class="morph-blob" style="top:50%;left:20%;animation-delay:-5s;width:clamp(200px,35vw,400px);height:clamp(200px,35vw,400px)"></div>
   <div class="cta-c">
@@ -523,7 +502,6 @@ body{padding-bottom:56px}
 <div class="sticky"><a href="tel:5412657271">Call Bay Haven &mdash; (541) 265-7271</a></div>
 <footer class="ftr">
   <div class="ftr-glow"></div>
-  <canvas class="ftr-wave wave-cv" data-color="200,165,92" data-y="0.0" style="height:100px;position:absolute;top:-50px;left:0;right:0;z-index:1;pointer-events:none"></canvas>
   <div class="ftr-top">
     <div class="ftr-brand">
       <h3>Bay Haven Inn</h3>
