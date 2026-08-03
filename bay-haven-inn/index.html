@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Bay Haven Inn — Newport's Original Waterfront Bar</title>
+<meta name="description" content="Newport's original waterfront bar since 1908. Live music, beer garden, horseshoe pits, karaoke on the Bayfront.">
+<meta property="og:title" content="Bay Haven Inn — Newport's Original Waterfront Bar">
+<meta property="og:description" content="Live music, cold beer, and honest company on the Bayfront since 1908.">
+<meta property="og:type" content="website">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#c8a55c">
+<link rel="preload" href="images/bay-haven-inn-waterfront-exterior.webp" as="image" type="image/webp">
+<link rel="preload" href="fonts/playfair-bold.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+
+@font-face{font-family:'PF';font-weight:700;font-display:swap;src:url(fonts/playfair-bold.woff2) format('woff2')}
+:root{
+  --bg:#090c0f;--gold:#c8a55c;--warm:#ece4d4;--text:#9e9790;--mut:#5a554e;
+  --acc:#d4603a;--bdr:#1f1c1a;
+  --hd:'PF',serif;--bd:system-ui,-apple-system,sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);--ease2:cubic-bezier(.22,1,.36,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:56px}
+body{font-family:var(--bd);background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased;cursor:none}
+a,button{cursor:none}
+
+/* ═══ PRELOADER ═══ */
+.loader{position:fixed;inset:0;z-index:10000;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s,visibility .6s}
+.loader.done{opacity:0;visibility:hidden;pointer-events:none}
+.loader-text{font-family:var(--hd);font-size:clamp(1.2rem,3vw,2rem);color:var(--gold);letter-spacing:.5em;text-transform:uppercase;overflow:hidden}
+.loader-text span{display:inline-block;animation:loaderUp .5s var(--ease) forwards;opacity:0;transform:translateY(100%)}
+@keyframes loaderUp{to{opacity:1;transform:translateY(0)}}
+.loader-line{width:120px;height:1px;background:var(--bdr);margin-top:2rem;position:relative;overflow:hidden}
+.loader-line::after{content:'';position:absolute;left:0;top:0;height:100%;width:100%;background:var(--gold);animation:loadFill 1.8s .6s var(--ease) forwards;transform:translateX(-100%)}
+@keyframes loadFill{to{transform:translateX(0)}}
+.loader-sub{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--mut);margin-top:1.5rem;opacity:0;animation:fu .6s 1s var(--ease) forwards}
+
+/* ═══ CUSTOM CURSOR ═══ */
+.cursor{position:fixed;top:0;left:0;width:12px;height:12px;border-radius:50%;background:var(--gold);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .3s,height .3s,background .3s,opacity .3s;mix-blend-mode:difference;opacity:0}
+.cursor.active{opacity:1}
+.cursor.hover{width:48px;height:48px;background:rgba(200,165,92,.15);border:1px solid var(--gold)}
+.cursor-dot{position:fixed;top:0;left:0;width:4px;height:4px;border-radius:50%;background:var(--gold);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);opacity:0}
+.cursor-dot.active{opacity:1}
+
+/* ═══ SELECTION ═══ */
+::selection{background:rgba(200,165,92,.25);color:#fff}
+::-moz-selection{background:rgba(200,165,92,.25);color:#fff}
+
+/* ═══ GRAIN ═══ */
+.grain{position:fixed;inset:0;z-index:9997;pointer-events:none;opacity:0;mix-blend-mode:overlay}
+.grain svg{width:100%;height:100%}
+body.loaded .grain{opacity:.04;transition:opacity 1s}
+
+/* ═══ ANIMATIONS ═══ */
+@keyframes fu{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes shimmer{0%{left:-100%}30%{left:150%}100%{left:150%}}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes kb1{0%{transform:scale(1) translate(0,0)}100%{transform:scale(1.12) translate(-1.5%,1%)}}
+@keyframes kb2{0%{transform:scale(1.08) translate(1%,0)}100%{transform:scale(1) translate(-1%,1.5%)}}
+@keyframes kb3{0%{transform:scale(1) translate(0,0)}100%{transform:scale(1.15) translate(2%,-1%)}}
+@keyframes breathe{0%,100%{opacity:.3}50%{opacity:.8}}
+@keyframes sp{0%,100%{transform:scaleY(1);opacity:.3}50%{transform:scaleY(1.5);opacity:1}}
+
+/* ═══ SCROLL PROGRESS BAR ═══ */
+.scroll-prog{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--acc));z-index:101;width:0;transition:none;pointer-events:none}
+
+/* ═══ SCROLLING TEXT MARQUEE — giant outline text ═══ */
+.txt-marquee{overflow:hidden;white-space:nowrap;padding:1rem 0;position:relative}
+.txt-marquee-track{display:inline-flex;animation:txtScroll 25s linear infinite}
+@keyframes txtScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.txt-marquee span{font-family:var(--hd);font-size:clamp(4rem,12vw,10rem);color:transparent;-webkit-text-stroke:1px rgba(200,165,92,.1);letter-spacing:.06em;padding:0 clamp(1rem,3vw,3rem);flex-shrink:0;text-transform:uppercase}
+
+/* ═══ 3D TILT CARDS ═══ */
+.tilt{transition:transform .4s var(--ease);transform-style:preserve-3d;perspective:800px}
+
+/* ═══ VIDEO-LIKE ANIMATED BG ═══ */
+@keyframes bgPulse{0%,100%{filter:brightness(.45)saturate(1.1)hue-rotate(0deg)}50%{filter:brightness(.5)saturate(1.3)hue-rotate(3deg)}}
+.vid-bg img{animation:kb1 25s ease-in-out infinite alternate,bgPulse 12s ease-in-out infinite!important}
+
+/* ═══ MORPHING BLOB ═══ */
+.morph-blob{position:absolute;width:clamp(300px,50vw,600px);height:clamp(300px,50vw,600px);border-radius:40% 60% 70% 30%/40% 50% 60% 50%;background:radial-gradient(ellipse,rgba(200,165,92,.08),rgba(200,165,92,.02));animation:blobMorph 15s ease-in-out infinite;pointer-events:none;z-index:0}
+@keyframes blobMorph{0%{border-radius:40% 60% 70% 30%/40% 50% 60% 50%;transform:rotate(0deg)scale(1)}33%{border-radius:70% 30% 50% 50%/30% 60% 40% 70%;transform:rotate(120deg)scale(1.1)}66%{border-radius:50% 50% 30% 70%/60% 40% 70% 30%;transform:rotate(240deg)scale(.95)}100%{border-radius:40% 60% 70% 30%/40% 50% 60% 50%;transform:rotate(360deg)scale(1)}}
+
+/* ═══ PRELOADER UPGRADE ═══ */
+.loader-pct{font-family:var(--hd);font-size:clamp(3rem,8vw,5rem);color:rgba(200,165,92,.08);letter-spacing:.1em;margin-bottom:2rem}
+
+/* Scroll reveal */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rv.vis{opacity:1;transform:translateY(0)}
+.rv-l{opacity:0;transform:translateX(-40px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rv-l.vis{opacity:1;transform:translateX(0)}
+.rv-r{opacity:0;transform:translateX(40px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rv-r.vis{opacity:1;transform:translateX(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.22s}.d3{transition-delay:.34s}.d4{transition-delay:.46s}.d5{transition-delay:.58s}
+
+/* ═══ NAV ═══ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem clamp(2rem,5vw,4rem);transform:translateY(-100%);animation:navIn .6s 2.8s var(--ease) forwards;transition:padding .3s,background .3s}
+.nav.scrolled{backdrop-filter:blur(24px)saturate(1.4);-webkit-backdrop-filter:blur(24px)saturate(1.4);background:rgba(9,12,15,.88);padding:.6rem clamp(2rem,5vw,4rem);border-bottom:1px solid rgba(255,255,255,.04)}
+@keyframes navIn{to{transform:translateY(0)}}
+.nav-b{font-family:var(--hd);font-size:.82rem;color:var(--gold);letter-spacing:.14em;text-transform:uppercase}
+.nav-l{display:flex;gap:2rem;list-style:none}
+.nav-l a{color:rgba(255,255,255,.35);text-decoration:none;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;transition:color .3s;position:relative;padding-bottom:2px}
+.nav-l a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);transition:width .4s var(--ease)}
+.nav-l a:hover,.nav-l a.active{color:var(--gold)}.nav-l a:hover::after,.nav-l a.active::after{width:100%}
+
+/* ═══ SECTION 1: HERO — Full bleed, massive type ═══ */
+.hero{position:relative;height:100vh;height:100dvh;overflow:hidden}
+.hero-bg{position:absolute;inset:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;animation:kb1 30s ease-out forwards;filter:brightness(.75)saturate(1.1)}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(9,12,15,.15) 0%,transparent 25%,rgba(9,12,15,.35) 55%,rgba(9,12,15,.98) 90%),radial-gradient(ellipse at 20% 80%,rgba(200,165,92,.1),transparent 45%)}
+#hero-canvas{position:absolute;inset:0;z-index:2;pointer-events:none}
+.hero-c{position:absolute;bottom:0;left:0;right:0;z-index:3;padding:0 clamp(2rem,5vw,4rem) clamp(3rem,6vw,5rem)}
+.hero-ey{font-size:.6rem;letter-spacing:.6em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;opacity:0;animation:fu .8s 2.2s var(--ease) forwards;display:flex;align-items:center;gap:1rem}
+.hero-ey::before{content:'';width:40px;height:1px;background:var(--gold)}
+.hero-h1{font-family:var(--hd);font-size:clamp(4.5rem,15vw,14rem);color:#fff;line-height:.82;letter-spacing:-.03em;margin-bottom:1rem}
+.hero-h1 .char{display:inline-block;opacity:0;transform:translateY(80px)rotateX(60deg);animation:ci .7s var(--ease) forwards;transform-origin:bottom}
+@keyframes ci{to{opacity:1;transform:translateY(0)rotateX(0)}}
+.hero-row{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.hero-sub{font-family:var(--hd);font-size:clamp(.95rem,2vw,1.25rem);color:rgba(255,255,255,.45);font-style:italic;max-width:440px;line-height:1.7;opacity:0;animation:fu .8s 2.6s var(--ease) forwards}
+.hero-btns{display:flex;gap:1rem;opacity:0;animation:fu .8s 2.8s var(--ease) forwards}
+.btn-g{padding:1rem 2.5rem;background:var(--gold);color:#090c0f;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:all .4s var(--ease);position:relative;overflow:hidden}
+.btn-g::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);animation:shimmer 5s 4s ease-in-out infinite}
+.btn-g:hover{background:#dbb76a;box-shadow:0 0 50px rgba(200,165,92,.3);transform:translateY(-3px)scale(1.02)}
+.btn-o{padding:1rem 2.5rem;color:rgba(255,255,255,.5);font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;border:1px solid rgba(255,255,255,.12);transition:all .4s var(--ease)}
+.btn-o:hover{border-color:var(--gold);color:var(--gold)}
+.scroll-cue{position:absolute;bottom:1.2rem;left:50%;transform:translateX(-50%);z-index:3;opacity:0;animation:fu .6s 3.2s var(--ease) forwards}
+.scroll-cue span{font-size:.5rem;letter-spacing:.35em;text-transform:uppercase;color:var(--mut);display:block;text-align:center;margin-bottom:.35rem}
+.scroll-ln{width:1px;height:28px;margin:0 auto;background:linear-gradient(180deg,var(--gold),transparent);animation:sp 2s 3.5s ease-in-out infinite}
+
+/* ═══ SECTION 2: STATS MARQUEE ═══ */
+.stats{background:var(--gold);overflow:hidden}
+.stats-track{display:flex;align-items:center;padding:1.2rem 0;white-space:nowrap;animation:marquee 20s linear infinite}
+.stats-item{font-family:var(--hd);font-size:clamp(.85rem,1.8vw,1.2rem);color:#090c0f;padding:0 clamp(1.5rem,3.5vw,2.5rem);display:flex;align-items:center;gap:.6rem;flex-shrink:0}
+.stats-item strong{font-size:clamp(1.3rem,2.8vw,2rem);letter-spacing:-.01em}
+.stats-sep{width:4px;height:4px;border-radius:50%;background:#090c0f;opacity:.25;flex-shrink:0}
+
+/* ═══ SECTION 3: ABOUT — Asymmetric split ═══ */
+.about{display:grid;grid-template-columns:55% 1fr;min-height:100vh;min-height:100dvh}
+.about-img{position:relative;overflow:hidden}
+.about-img img{width:100%;height:100%;object-fit:cover;animation:kb2 25s ease-in-out infinite alternate}
+.about-img::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 70%,var(--bg) 100%)}
+.about-txt{display:flex;flex-direction:column;justify-content:center;padding:clamp(3rem,6vw,6rem) clamp(2.5rem,4vw,4rem) clamp(3rem,6vw,6rem) clamp(2rem,3vw,3rem)}
+.ey{font-size:.58rem;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:flex;align-items:center;gap:.85rem}
+.ey::before{content:'';width:28px;height:1px;background:var(--gold)}
+.sh{font-family:var(--hd);font-size:clamp(2rem,4.5vw,3.4rem);color:#fff;line-height:1.06;margin-bottom:1.5rem;letter-spacing:-.01em;text-wrap:balance}
+.sp{font-size:.95rem;line-height:1.95;max-width:480px}.sp p+p{margin-top:1.2rem}
+.sp-sig{margin-top:2rem;font-family:var(--hd);font-style:italic;font-size:.85rem;color:var(--gold);letter-spacing:.04em}
+
+/* ═══ SECTION 4: ENTERTAINMENT — Staggered cards on music bg ═══ */
+.ent{position:relative;min-height:100vh;min-height:100dvh;overflow:hidden;display:flex;align-items:center}
+.ent-bg{position:absolute;inset:0}.ent-bg img{width:100%;height:100%;object-fit:cover;animation:kb3 28s ease-in-out infinite alternate;filter:brightness(.6)}
+.ent-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(9,12,15,.92) 0%,rgba(9,12,15,.6) 50%,rgba(9,12,15,.85) 100%)}
+.aurora-cv{position:absolute;inset:0;z-index:1;pointer-events:none}
+.ent-c{position:relative;z-index:2;width:100%;max-width:1200px;margin:0 auto;padding:clamp(5rem,10vw,8rem) clamp(2rem,5vw,4rem);display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.ent-left{max-width:420px}
+.ent-cards{display:flex;flex-direction:column;gap:1rem}
+.ent-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);padding:1.5rem 2rem;transition:all .5s var(--ease);position:relative;overflow:hidden}
+.ent-card::before{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--gold);transition:width .5s var(--ease)}
+.ent-card:hover::before{width:100%}
+.ent-card:hover{background:rgba(200,165,92,.04);border-color:rgba(200,165,92,.12);transform:translateX(6px)}
+.ent-card h3{font-family:var(--hd);font-size:clamp(1.15rem,2.5vw,1.5rem);color:#fff;margin-bottom:.15rem}
+.ent-when{font-size:.62rem;color:var(--gold);letter-spacing:.18em;text-transform:uppercase;margin-bottom:.5rem}
+.ent-card p{font-size:.88rem;line-height:1.75;color:rgba(255,255,255,.45)}
+
+/* ═══ SECTION 5: HERITAGE — Scroll-reactive counter + timeline ═══ */
+.heritage{position:relative;min-height:100vh;min-height:100dvh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.heritage-bg{position:absolute;inset:0}.heritage-bg img{width:100%;height:100%;object-fit:cover;filter:brightness(.25)saturate(.7);animation:kb3 28s ease-in-out infinite alternate}
+.heritage-bg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(9,12,15,.3),rgba(9,12,15,.88) 60%)}
+.heritage-canvas{position:absolute;inset:0;z-index:1;pointer-events:none}
+.heritage-c{position:relative;z-index:2;text-align:center;padding:4rem 2rem}
+.heritage-counter{font-family:var(--hd);font-size:clamp(10rem,30vw,22rem);color:transparent;-webkit-text-stroke:1.5px rgba(200,165,92,.18);line-height:.85;letter-spacing:-.04em;margin-bottom:1rem;transition:all 1.5s var(--ease)}
+.heritage-counter.vis{-webkit-text-stroke-color:rgba(200,165,92,.35)}
+.heritage-h{font-family:var(--hd);font-size:clamp(1.8rem,4vw,3rem);color:#fff;line-height:1.1;margin-bottom:1rem;letter-spacing:.02em}
+.heritage-p{font-family:var(--hd);font-style:italic;font-size:clamp(1rem,2vw,1.3rem);color:rgba(255,255,255,.35);max-width:500px;margin:0 auto 2rem;line-height:1.7}
+.heritage-tl{display:flex;justify-content:center;gap:clamp(2rem,5vw,5rem);flex-wrap:wrap;max-width:800px;margin:0 auto}
+.heritage-tl-item{text-align:center;opacity:0;transform:translateY(20px);transition:all .7s var(--ease)}
+.heritage-tl-item.vis{opacity:1;transform:translateY(0)}
+.heritage-tl-item .tl-y{font-family:var(--hd);font-size:clamp(1.5rem,3vw,2.2rem);color:var(--gold);display:block;margin-bottom:.3rem}
+.heritage-tl-item .tl-d{font-size:.7rem;color:rgba(255,255,255,.3);letter-spacing:.08em;max-width:120px;margin:0 auto;line-height:1.5}
+.heritage-tl-item::before{content:'';display:block;width:1px;height:20px;background:linear-gradient(180deg,transparent,var(--gold));margin:0 auto .75rem;opacity:.3}
+
+/* ═══ CLIP-PATH REVEALS ═══ */
+.clip-rv{clip-path:inset(6%);transition:clip-path 1.4s var(--ease2)}.clip-rv.vis{clip-path:inset(0)}
+
+/* ═══ SECTION 6: HORIZONTAL DRAG GALLERY ═══ */
+.gallery{position:relative;overflow:hidden;padding:clamp(4rem,8vw,7rem) 0}
+.gallery-head{padding:0 clamp(2rem,5vw,4rem);margin-bottom:2.5rem}
+.gallery-track{display:flex;gap:clamp(1rem,2vw,1.5rem);padding:0 clamp(2rem,5vw,4rem);cursor:grab;-webkit-user-select:none;user-select:none;will-change:transform}
+.gallery-track.dragging{cursor:grabbing}
+.gallery-track::-webkit-scrollbar{display:none}
+.gallery-item{flex:0 0 auto;width:clamp(280px,35vw,450px);position:relative;overflow:hidden}
+.gallery-item img{width:100%;height:clamp(320px,45vw,500px);object-fit:cover;transition:transform .6s var(--ease);filter:brightness(.85)saturate(1.1)}
+.gallery-item:hover img{transform:scale(1.06);filter:brightness(1)saturate(1.2)}
+.gallery-item-label{position:absolute;bottom:0;left:0;right:0;padding:2rem 1.5rem 1.5rem;background:linear-gradient(transparent,rgba(9,12,15,.8));font-family:var(--hd);font-size:.9rem;color:rgba(255,255,255,.8);letter-spacing:.02em}
+.gallery-hint{padding:1.5rem clamp(2rem,5vw,4rem) 0;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mut);display:flex;align-items:center;gap:.5rem}
+.gallery-hint::before{content:'';width:20px;height:1px;background:var(--mut)}
+
+/* ═══ SECTION 7: REVIEWS — Featured quote + staggered cards ═══ */
+.reviews{position:relative;min-height:100vh;min-height:100dvh;overflow:hidden;display:flex;align-items:center}
+.reviews-bg{position:absolute;inset:0}.reviews-bg img{width:100%;height:100%;object-fit:cover;filter:brightness(.35)saturate(.8);animation:kb2 22s ease-in-out infinite alternate}
+.reviews-bg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(9,12,15,.4),rgba(9,12,15,.85) 70%)}
+.reviews-c{position:relative;z-index:1;max-width:1100px;width:100%;margin:0 auto;padding:clamp(5rem,10vw,8rem) clamp(2rem,5vw,4rem)}
+.rev-featured{text-align:center;margin-bottom:4rem}
+.rev-featured blockquote{font-family:var(--hd);font-style:italic;font-size:clamp(1.5rem,3.5vw,2.6rem);color:rgba(255,255,255,.9);line-height:1.45;max-width:750px;margin:0 auto;text-shadow:0 2px 40px rgba(0,0,0,.4)}
+.rev-featured cite{display:block;margin-top:1.25rem;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-style:normal}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.rev-card{background:rgba(9,12,15,.6);backdrop-filter:blur(20px)saturate(1.3);-webkit-backdrop-filter:blur(20px)saturate(1.3);border:1px solid rgba(255,255,255,.05);padding:clamp(1.5rem,3vw,2.25rem);transition:all .5s var(--ease);position:relative;overflow:hidden}
+.rev-card:nth-child(2){transform:translateY(30px)}
+.rev-card:nth-child(2).vis{transform:translateY(30px)}
+.rev-card:hover{border-color:rgba(200,165,92,.15);transform:translateY(-4px)!important;background:rgba(200,165,92,.04)}
+.rev-card::after{content:'\201C';position:absolute;top:.3rem;right:1rem;font-family:var(--hd);font-size:4rem;color:var(--gold);opacity:.07;line-height:1}
+.rev-stars{color:var(--gold);font-size:.75rem;letter-spacing:.1em;margin-bottom:.7rem}
+.rev-q{font-family:var(--hd);font-style:italic;font-size:.95rem;color:rgba(255,255,255,.8);line-height:1.7;margin-bottom:.7rem}
+.rev-a{font-size:.62rem;color:var(--mut);letter-spacing:.1em;text-transform:uppercase}
+
+/* ═══ SECTION 8: BEER GARDEN — Reversed split ═══ */
+.garden{display:grid;grid-template-columns:1fr 55%;min-height:100vh;min-height:100dvh}
+.garden-txt{display:flex;flex-direction:column;justify-content:center;padding:clamp(3rem,6vw,6rem) clamp(2rem,3vw,3rem) clamp(3rem,6vw,6rem) clamp(2.5rem,4vw,4rem)}
+.garden-img{position:relative;overflow:hidden}
+.garden-img img{width:100%;height:100%;object-fit:cover;animation:kb3 25s ease-in-out infinite alternate}
+.garden-img::after{content:'';position:absolute;inset:0;background:linear-gradient(270deg,transparent 70%,var(--bg) 100%)}
+.tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:2rem}
+.tag{padding:.6rem 1.3rem;border:1px solid rgba(255,255,255,.08);font-size:.72rem;color:var(--warm);letter-spacing:.06em;transition:all .35s var(--ease);background:rgba(255,255,255,.02)}
+.tag:hover{border-color:var(--gold);color:var(--gold);background:rgba(200,165,92,.06);transform:translateY(-2px)}
+
+/* ═══ SECTION 9: VISIT — Architectural grid ═══ */
+.visit{padding:clamp(5rem,10vw,8rem) clamp(2rem,5vw,4rem);max-width:1200px;margin:0 auto}
+.visit-head{margin-bottom:3rem}
+.visit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.visit-b{border:1px solid rgba(255,255,255,.06);padding:clamp(2rem,4vw,3rem);position:relative;transition:all .5s var(--ease)}
+.visit-b::before{content:'';position:absolute;top:-1px;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease)}
+.visit-b:hover::before{transform:scaleX(1)}
+.visit-b:hover{background:rgba(200,165,92,.02)}
+.visit-b h3{font-family:var(--hd);font-size:1.1rem;color:#fff;margin-bottom:.75rem;letter-spacing:.02em}
+.visit-b p,.visit-b li{font-size:.9rem;line-height:1.85}.visit-b ul{list-style:none}
+.visit-b a{color:var(--gold);text-decoration:none;transition:opacity .3s}.visit-b a:hover{opacity:.7}
+
+/* ═══ SECTION 10: CTA — Dramatic finale ═══ */
+.cta{position:relative;min-height:100vh;min-height:100dvh;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.cta-bg{position:absolute;inset:0}.cta-bg img{width:100%;height:100%;object-fit:cover;animation:kb1 25s ease-in-out infinite alternate;filter:brightness(.45)saturate(1.1)}
+.cta-bg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(9,12,15,.55),rgba(9,12,15,.9) 65%)}
+.wave-cv{position:absolute;inset:0;z-index:1;pointer-events:none}
+.cta-c{position:relative;z-index:2;text-align:center;padding:4rem 2rem}
+.cta-phone{display:inline-block;margin-top:1.5rem;font-family:var(--hd);font-size:clamp(2.5rem,7vw,5.5rem);color:var(--gold);text-decoration:none;transition:all .4s var(--ease);letter-spacing:.02em}
+.cta-phone:hover{color:#fff;text-shadow:0 0 60px rgba(200,165,92,.4);transform:scale(1.04)}
+.cta-addr{margin-top:1rem;font-size:.78rem;color:var(--mut);letter-spacing:.08em}
+
+/* ═══ STICKY CTA ═══ */
+.sticky{position:fixed;bottom:0;left:0;right:0;z-index:99;padding:.6rem 1.25rem;background:rgba(9,12,15,.96);backdrop-filter:blur(24px)saturate(1.3);-webkit-backdrop-filter:blur(24px)saturate(1.3);border-top:1px solid rgba(200,165,92,.12);transform:translateY(100%);transition:transform .5s var(--ease)}
+.sticky.show{transform:translateY(0)}
+.sticky a{display:block;width:100%;padding:.85rem;background:var(--gold);color:#090c0f;text-align:center;font-weight:700;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:all .3s}
+.sticky a:hover{background:#dbb76a;box-shadow:0 0 35px rgba(200,165,92,.25)}
+body{padding-bottom:56px}
+/* ═══ FOOTER — Premium ═══ */
+.ftr{position:relative;overflow:hidden;background:#060809;padding:0}
+.ftr-wave{position:absolute;top:0;left:0;right:0;height:120px;pointer-events:none}
+.ftr-glow{position:absolute;top:-80px;left:50%;width:600px;height:200px;transform:translateX(-50%);background:radial-gradient(ellipse,rgba(200,165,92,.08),transparent 70%);pointer-events:none}
+.ftr-top{padding:clamp(5rem,10vw,8rem) clamp(2rem,5vw,4rem) 3rem;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:clamp(2rem,4vw,4rem);position:relative;z-index:1}
+.ftr-brand{max-width:340px}
+.ftr-brand h3{font-family:var(--hd);font-size:clamp(1.5rem,3vw,2.2rem);color:#fff;margin-bottom:1rem;line-height:1.1}
+.ftr-brand p{font-size:.88rem;line-height:1.8;color:rgba(255,255,255,.35);margin-bottom:1.25rem}
+.ftr-brand-tag{font-family:var(--hd);font-style:italic;font-size:.82rem;color:var(--gold);letter-spacing:.04em}
+.ftr-col h4{font-size:.6rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:1.25rem;display:flex;align-items:center;gap:.6rem}
+.ftr-col h4::before{content:'';width:16px;height:1px;background:var(--gold)}
+.ftr-col ul{list-style:none}
+.ftr-col li{font-size:.85rem;line-height:2.2;color:rgba(255,255,255,.35)}
+.ftr-col a{color:rgba(255,255,255,.35);text-decoration:none;transition:color .3s}.ftr-col a:hover{color:var(--gold)}
+.ftr-col p{font-size:.85rem;line-height:1.85;color:rgba(255,255,255,.35)}
+.ftr-col .ftr-phone{font-family:var(--hd);font-size:1.1rem;color:var(--gold);text-decoration:none;transition:color .3s;display:inline-block;margin-bottom:.5rem}
+.ftr-col .ftr-phone:hover{color:#fff}
+.ftr-divider{border:none;border-top:1px solid rgba(255,255,255,.06);margin:0}
+.ftr-bottom{display:flex;justify-content:space-between;align-items:center;padding:1.5rem clamp(2rem,5vw,4rem) 5rem;position:relative;z-index:1}
+.ftr-copy{font-size:.62rem;color:rgba(255,255,255,.2);letter-spacing:.08em}
+.ftr-back{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.2);text-decoration:none;transition:color .3s}.ftr-back:hover{color:var(--gold)}
+@media(max-width:900px){.ftr-top{grid-template-columns:1fr 1fr}.ftr-brand{grid-column:span 2}}
+@media(max-width:640px){.ftr-top{grid-template-columns:1fr}.ftr-brand{grid-column:1}.ftr-bottom{flex-direction:column;gap:.5rem;text-align:center}}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:900px){
+  .about{grid-template-columns:1fr;min-height:auto}.about-img{height:50vw;max-height:380px}.about-img::after{background:linear-gradient(180deg,transparent 60%,var(--bg) 100%)}
+  .ent-c{grid-template-columns:1fr}
+  .garden{grid-template-columns:1fr}.garden-img{height:50vw;max-height:380px;order:-1}.garden-img::after{background:linear-gradient(180deg,transparent 60%,var(--bg) 100%)}
+  .rev-grid{grid-template-columns:1fr}.rev-card:nth-child(2),.rev-card:nth-child(2).vis{transform:none}
+  .visit-grid{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  body{cursor:auto}a,button{cursor:auto}.cursor,.cursor-dot{display:none}
+  .nav{padding:.6rem 1.25rem}.nav-l{gap:1rem}.nav-l a{font-size:.58rem;letter-spacing:.1em}
+  .scroll-cue{display:none}.gallery-hint{display:none}
+  .hero-btns{flex-direction:column}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important}
+  .rv,.rv-l,.rv-r{opacity:1;transform:none}.loader{display:none}
+  .hero-bg img,.about-img img,.ent-bg img,.reviews-bg img,.garden-img img,.cta-bg img{animation:none}
+  .hero-h1 .char{opacity:1;transform:none}.stats-track{animation:none}
+  #hero-canvas,.aurora-cv,.wave-cv{display:none}
+}
+
+</style>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BarOrPub","name":"Bay Haven Inn","description":"Newport's original waterfront bar since 1908.","telephone":"+1-541-265-7271","address":{"@type":"PostalAddress","streetAddress":"608 SW Bay Blvd","addressLocality":"Newport","addressRegion":"OR","postalCode":"97365","addressCountry":"US"},"openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"10:00","closes":"00:00"},"priceRange":"$","geo":{"@type":"GeoCoordinates","latitude":"44.6312","longitude":"-124.0535"}}
+</script>
+</head>
+<body>
+<!-- PRELOADER -->
+<div class="loader" id="loader">
+  <p class="loader-pct" id="loader-pct">0</p>
+  <p class="loader-text" id="loader-text"></p>
+  <div class="loader-line"></div>
+  <p class="loader-sub">Newport, Oregon &middot; Est. 1908</p>
+</div>
+
+<!-- SCROLL PROGRESS -->
+<div class="scroll-prog" id="scroll-prog"></div>
+
+<svg class="grain" aria-hidden="true"><filter id="g"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#g)"/></svg>
+
+<!-- CUSTOM CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-dot" id="cursor-dot"></div>
+
+<nav class="nav" role="navigation">
+  <div class="nav-b">Bay Haven Inn</div>
+  <ul class="nav-l">
+    <li><a href="#about" data-spy>About</a></li>
+    <li><a href="#music" data-spy>Music</a></li>
+    <li><a href="#gallery" data-spy>Gallery</a></li>
+    <li><a href="#reviews" data-spy>Reviews</a></li>
+    <li><a href="#visit" data-spy>Visit</a></li>
+  </ul>
+</nav>
+
+<!-- ═══ 1. HERO ═══ -->
+<section class="hero">
+  <div class="hero-bg"><img fetchpriority="high" src="images/bay-haven-inn-waterfront-exterior.webp" alt="Bay Haven Inn waterfront exterior" width="1344" height="768"></div>
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-c">
+    <p class="hero-ey">Newport, Oregon &middot; Since 1908</p>
+    <h1 class="hero-h1" data-split>Bay Haven Inn</h1>
+    <div class="hero-row">
+      <p class="hero-sub">Live music, cold beer, and honest company on the Bayfront&mdash;since before Oregon had highways.</p>
+      <div class="hero-btns">
+        <a href="tel:5412657271" class="btn-g" data-magnetic>Call (541) 265-7271</a>
+        <a href="#visit" class="btn-o" data-magnetic>Hours &amp; Location</a>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>Scroll</span><div class="scroll-ln"></div></div>
+</section>
+
+<!-- ═══ 2. STATS MARQUEE ═══ -->
+<div class="stats">
+  <div class="stats-track">
+    <span class="stats-item"><strong>118</strong> Years</span><span class="stats-sep"></span>
+    <span class="stats-item"><strong>365</strong> Days Open</span><span class="stats-sep"></span>
+    <span class="stats-item"><strong>7</strong> Nights of Music</span><span class="stats-sep"></span>
+    <span class="stats-item"><strong>1908</strong> Established</span><span class="stats-sep"></span>
+    <span class="stats-item"><strong>$0</strong> Cover Charge</span><span class="stats-sep"></span>
+    <span class="stats-item"><strong>118</strong> Years</span><span class="stats-sep"></span>
+    <span class="stats-item"><strong>365</strong> Days Open</span><span class="stats-sep"></span>
+    <span class="stats-item"><strong>7</strong> Nights of Music</span><span class="stats-sep"></span>
+    <span class="stats-item"><strong>1908</strong> Established</span><span class="stats-sep"></span>
+    <span class="stats-item"><strong>$0</strong> Cover Charge</span><span class="stats-sep"></span>
+  </div>
+</div>
+
+<!-- ═══ 3. ABOUT — Asymmetric split, image left 55% ═══ -->
+<section class="about" id="about">
+  <div class="about-img"><img src="images/inside-bay-haven-inn.webp" alt="Inside Bay Haven Inn" width="1344" height="768" loading="lazy" class="img-wipe" data-wipe="left"></div>
+  <div class="about-txt">
+    <div class="ey rv-l">The Story</div>
+    <h2 class="sh rv-l d1 scramble">One Hundred Eighteen Years on the Water</h2>
+    <div class="sp rv-l d2">
+      <p>Bay Haven Inn has stood on Bay Boulevard since 1908. Through prohibition, world wars, fishing booms and busts, it stayed open. The bar top is worn smooth. The walls are covered in the kind of history you can&rsquo;t fake.</p>
+      <p>This is not a craft cocktail bar. It&rsquo;s a place where fishermen and visitors sit on the same stools, where someone picks up a guitar on Sunday afternoon and the whole room joins in.</p>
+    </div>
+    <p class="sp-sig rv-l d3">&mdash; Still pouring since 1908</p>
+  </div>
+</section>
+
+<!-- ═══ 4. ENTERTAINMENT — Two-column, cards right ═══ -->
+<section class="ent" id="music">
+  <div class="ent-bg"><img src="images/live-music-at-bay-haven.webp" alt="Live music at Bay Haven" width="1344" height="768" loading="lazy"></div>
+  <canvas class="aurora-cv" data-hue="40"></canvas>
+  <div class="ent-c">
+    <div class="ent-left">
+      <div class="ey rv">Live Entertainment</div>
+      <h2 class="sh rv d1 scramble">Every Night Is a Show</h2>
+      <p class="sp rv d2">No cover, no pretension. Just music, karaoke, and the kind of crowd that makes a bar feel alive.</p>
+    </div>
+    <div class="ent-cards">
+      <div class="ent-card rv-r d1"><h3>Sunday Jam Session</h3><p class="ent-when">Every Sunday &middot; 3&ndash;6 PM</p><p>Local musicians bring their instruments. Classic rock and roll. The best free show on the coast.</p></div>
+      <div class="ent-card rv-r d2"><h3>Karaoke Nights</h3><p class="ent-when">Thursday, Friday &amp; Saturday</p><p>Three nights a week, the mic is yours. Regulars who can sing and first-timers who can&rsquo;t.</p></div>
+      <div class="ent-card rv-r d3"><h3>Full Oregon Bar</h3><p class="ent-when">Open Daily &middot; 10 AM&ndash;Midnight</p><p>Oregon beers and spirits. Nothing overpriced, nothing pretentious. Always cold.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SCROLLING TEXT MARQUEE ═══ -->
+<div class="txt-marquee">
+  <div class="txt-marquee-track">
+    <span>Live Music</span><span>&middot;</span><span>Karaoke</span><span>&middot;</span><span>Beer Garden</span><span>&middot;</span><span>Horseshoes</span><span>&middot;</span><span>Since 1908</span><span>&middot;</span><span>No Cover</span><span>&middot;</span>
+    <span>Live Music</span><span>&middot;</span><span>Karaoke</span><span>&middot;</span><span>Beer Garden</span><span>&middot;</span><span>Horseshoes</span><span>&middot;</span><span>Since 1908</span><span>&middot;</span><span>No Cover</span><span>&middot;</span>
+  </div>
+</div>
+
+<!-- ═══ 5. HERITAGE — Scroll-reactive counter + timeline ═══ -->
+<section class="heritage clip-rv" id="heritage">
+  <div class="heritage-bg"><img src="images/newport-harbor-at-golden-hour.webp" alt="Newport Harbor at golden hour" width="1344" height="768" loading="lazy"></div>
+  <canvas class="heritage-canvas" id="heritage-canvas"></canvas>
+  <div class="heritage-c">
+    <div class="heritage-counter rv" id="yr-counter">1908</div>
+    <h2 class="heritage-h rv d1">Newport&rsquo;s Original Bar</h2>
+    <p class="heritage-p rv d2">Before the bridges. Before the highway. Before the tourists knew the name. This bar was already here.</p>
+    <div class="heritage-tl">
+      <div class="heritage-tl-item"><span class="tl-y">1908</span><span class="tl-d">Bay Haven opens on Bay Boulevard</span></div>
+      <div class="heritage-tl-item"><span class="tl-y">1920</span><span class="tl-d">Prohibition. The bar stays open, serving &ldquo;near beer&rdquo;</span></div>
+      <div class="heritage-tl-item"><span class="tl-y">1936</span><span class="tl-d">Yaquina Bay Bridge opens, connecting the coast</span></div>
+      <div class="heritage-tl-item"><span class="tl-y">2026</span><span class="tl-d">Still pouring. Still open 365 days a year</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 6. HORIZONTAL DRAG GALLERY ═══ -->
+<section id="gallery">
+  <div class="gallery">
+    <div class="gallery-head">
+      <div class="ey rv">The Scene</div>
+      <h2 class="sh rv d1">Newport &amp; the Bayfront</h2>
+    </div>
+    <div class="gallery-track" id="gallery-track">
+      <div class="gallery-item"><img src="images/newport-harbor-at-golden-hour.webp" alt="Newport Harbor" width="1344" height="768" loading="lazy"><div class="gallery-item-label">Newport Harbor</div></div>
+      <div class="gallery-item"><img src="images/inside-bay-haven-inn.webp" alt="Inside Bay Haven" width="1344" height="768" loading="lazy"><div class="gallery-item-label">Inside Bay Haven</div></div>
+      <div class="gallery-item"><img src="images/the-bayfront.webp" alt="The Bayfront" width="1344" height="768" loading="lazy"><div class="gallery-item-label">The Bayfront</div></div>
+      <div class="gallery-item"><img src="images/live-music-at-bay-haven.webp" alt="Live Music" width="1344" height="768" loading="lazy"><div class="gallery-item-label">Live Music Night</div></div>
+      <div class="gallery-item"><img src="images/yaquina-head-lighthouse.webp" alt="Yaquina Head Lighthouse" width="1344" height="768" loading="lazy"><div class="gallery-item-label">Yaquina Head Lighthouse</div></div>
+      <div class="gallery-item"><img src="images/beer-garden.webp" alt="Beer Garden" width="1344" height="768" loading="lazy"><div class="gallery-item-label">The Beer Garden</div></div>
+      <div class="gallery-item"><img src="images/sunset-on-newport-harbor.webp" alt="Sunset on Newport Harbor" width="1344" height="768" loading="lazy"><div class="gallery-item-label">Sunset on the Harbor</div></div>
+      <div class="gallery-item"><img src="images/oregon-coast.webp" alt="Oregon Coast" width="1344" height="768" loading="lazy"><div class="gallery-item-label">Oregon Coast</div></div>
+      <div class="gallery-item"><img src="images/craft-beer-pour.webp" alt="Craft beer pour" width="1344" height="768" loading="lazy"><div class="gallery-item-label">Cold Draft, Warm Bar</div></div>
+      <div class="gallery-item"><img src="images/oregon-craft-beer.webp" alt="Oregon Craft Beer" width="1344" height="768" loading="lazy"><div class="gallery-item-label">Oregon Craft Beer</div></div>
+    </div>
+    <p class="gallery-hint">Drag to explore</p>
+  </div>
+</section>
+
+<!-- ═══ 7. REVIEWS — Featured + staggered grid ═══ -->
+<section class="reviews clip-rv" id="reviews">
+  <div class="reviews-bg"><img src="images/neon-bar-signs.webp" alt="Neon bar signs" width="1344" height="768" loading="lazy"></div>
+  <canvas class="aurora-cv" data-hue="30" style="z-index:1"></canvas>
+  <div class="reviews-c">
+    <div class="rev-featured rv">
+      <div class="ey" style="justify-content:center">What People Say</div>
+      <blockquote>&ldquo;Love this place! The atmosphere, the bartenders, the karaoke&mdash;everything about it feels real. You walk in a stranger and leave a regular.&rdquo;</blockquote>
+      <cite>Yelp Review</cite>
+    </div>
+    <div class="rev-grid">
+      <div class="rev-card rv d1">
+        <div class="rev-stars">&starf;&starf;&starf;&starf;&starf;</div>
+        <p class="rev-q">&ldquo;Fabulous Sunday afternoon jam session. Real musicians playing real rock and roll. Best free entertainment on the Oregon coast.&rdquo;</p>
+        <p class="rev-a">&mdash; TripAdvisor</p>
+      </div>
+      <div class="rev-card rv d2">
+        <div class="rev-stars">&starf;&starf;&starf;&starf;&starf;</div>
+        <p class="rev-q">&ldquo;Great drinks and live music in a fun, laid-back atmosphere. The beer garden is a hidden gem.&rdquo;</p>
+        <p class="rev-a">&mdash; Google Review</p>
+      </div>
+      <div class="rev-card rv d3">
+        <div class="rev-stars">&starf;&starf;&starf;&starf;&star;</div>
+        <p class="rev-q">&ldquo;Good place to hang out, catch some live karaoke. Prices are fair and bartenders pour strong.&rdquo;</p>
+        <p class="rev-a">&mdash; Facebook</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 8. BEER GARDEN — Reversed split, text left / image right 55% ═══ -->
+<section class="garden clip-rv">
+  <div class="garden-txt">
+    <div class="ey rv-r">The Grounds</div>
+    <h2 class="sh rv-r d1 scramble">Beer Garden &amp; Horseshoe Pits</h2>
+    <div class="sp rv-r d2">
+      <p>Out back, a landscaped beer garden with covered seating lets you drink outside rain or shine. The horseshoe pits see real competition on warm evenings. Your dog is welcome inside and out.</p>
+    </div>
+    <div class="tags rv-r d3">
+      <span class="tag">Beer Garden</span><span class="tag">Covered Patio</span><span class="tag">Horseshoe Pits</span><span class="tag">Dog Friendly</span><span class="tag">Full Bar</span><span class="tag">Oregon Craft Beer</span><span class="tag">Live Music</span><span class="tag">Karaoke</span><span class="tag">No Cover</span>
+    </div>
+  </div>
+  <div class="garden-img"><img src="images/beer-garden.webp" alt="Beer garden patio" width="1344" height="768" loading="lazy" class="img-wipe" data-wipe="right"></div>
+</section>
+
+<!-- ═══ 9. VISIT — Architectural grid ═══ -->
+<section class="visit" id="visit">
+  <div class="visit-head">
+    <div class="ey rv">Find Us</div>
+    <h2 class="sh rv d1">On the Bayfront, Where We&rsquo;ve Always Been</h2>
+  </div>
+  <div class="visit-grid">
+    <div class="visit-b rv d1"><h3>Hours</h3><ul><li>Monday&ndash;Sunday</li><li>10 AM&ndash;Midnight</li></ul><p style="margin-top:.5rem;color:var(--mut);font-size:.78rem">Open 365 days a year.</p></div>
+    <div class="visit-b rv d2"><h3>Location</h3><p>608 SW Bay Blvd<br>Newport, OR 97365</p><p style="margin-top:.5rem"><a href="https://maps.google.com/?q=608+SW+Bay+Blvd+Newport+OR+97365" target="_blank" rel="noopener">Get Directions &rarr;</a></p></div>
+    <div class="visit-b rv d3"><h3>Contact</h3><p><a href="tel:5412657271">(541) 265-7271</a></p><p style="margin-top:.5rem;color:var(--mut);font-size:.78rem">Walk-ins only. No reservations.</p></div>
+  </div>
+</section>
+
+<!-- ═══ 10. CTA — Dramatic finale ═══ -->
+<section class="cta">
+  <div class="cta-bg vid-bg"><img src="images/oregon-coast.webp" alt="Oregon coast waves" width="1344" height="768" loading="lazy"></div>
+  <canvas class="wave-cv" data-color="200,165,92" data-y="0.6"></canvas>
+  <div class="morph-blob" style="top:20%;left:60%"></div>
+  <div class="morph-blob" style="top:50%;left:20%;animation-delay:-5s;width:clamp(200px,35vw,400px);height:clamp(200px,35vw,400px)"></div>
+  <div class="cta-c">
+    <div class="ey rv" style="justify-content:center">Open Tonight</div>
+    <h2 class="sh rv" style="color:#fff;font-size:clamp(2.5rem,6vw,4.5rem)">Pull Up a Stool</h2>
+    <p class="rv d1" style="font-family:var(--hd);font-style:italic;font-size:clamp(.95rem,2vw,1.2rem);color:rgba(255,255,255,.4);max-width:420px;margin:0 auto;line-height:1.7">The door&rsquo;s open, the beer&rsquo;s cold, and somebody&rsquo;s probably about to sing Journey.</p>
+    <a href="tel:5412657271" class="cta-phone rv d2">(541) 265-7271</a>
+    <p class="cta-addr rv d3">608 SW Bay Blvd &middot; Newport, Oregon 97365</p>
+  </div>
+</section>
+
+<div class="sticky"><a href="tel:5412657271">Call Bay Haven &mdash; (541) 265-7271</a></div>
+<footer class="ftr">
+  <div class="ftr-glow"></div>
+  <canvas class="ftr-wave wave-cv" data-color="200,165,92" data-y="0.0" style="height:100px;position:absolute;top:-50px;left:0;right:0;z-index:1;pointer-events:none"></canvas>
+  <div class="ftr-top">
+    <div class="ftr-brand">
+      <h3>Bay Haven Inn</h3>
+      <p>Newport&rsquo;s original waterfront bar, pouring drinks and hosting music on the Bayfront since 1908. No cover, no pretension&mdash;just an honest bar.</p>
+      <p class="ftr-brand-tag">Est. 1908 &middot; Newport, Oregon</p>
+    </div>
+    <div class="ftr-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#music">Live Music</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#visit">Visit</a></li>
+      </ul>
+    </div>
+    <div class="ftr-col">
+      <h4>Hours</h4>
+      <ul>
+        <li>Monday&ndash;Sunday</li>
+        <li>10 AM&ndash;Midnight</li>
+        <li style="margin-top:.5rem;font-size:.75rem;color:rgba(255,255,255,.2)">Open 365 days a year</li>
+      </ul>
+    </div>
+    <div class="ftr-col">
+      <h4>Contact</h4>
+      <a href="tel:5412657271" class="ftr-phone">(541) 265-7271</a>
+      <p>608 SW Bay Blvd<br>Newport, OR 97365</p>
+      <p style="margin-top:.75rem"><a href="https://maps.google.com/?q=608+SW+Bay+Blvd+Newport+OR+97365" target="_blank" rel="noopener">Get Directions &rarr;</a></p>
+    </div>
+  </div>
+  <hr class="ftr-divider">
+  <div class="ftr-bottom">
+    <p class="ftr-copy">&copy; 2026 Bay Haven Inn. All rights reserved.</p>
+    <a href="#" class="ftr-back" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">&uarr; Back to Top</a>
+  </div>
+</footer>
+<script defer src="main.js"></script>
+</body>
+</html>
