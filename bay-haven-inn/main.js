@@ -181,4 +181,36 @@
   if(stickyEl){const heroH=document.querySelector('.hero')?.offsetHeight||600;
     window.addEventListener('scroll',()=>stickyEl.classList.toggle('show',window.scrollY>heroH*.6),{passive:true});
   }
+
+  // ── BOOKING MODAL ──
+  const overlay=document.getElementById('book-overlay');
+  const bookForm=document.getElementById('book-form');
+  const bookSuccess=document.getElementById('book-success');
+  if(overlay){
+    function openBook(){overlay.classList.add('active');document.body.style.overflow='hidden'}
+    function closeBook(){overlay.classList.remove('active');document.body.style.overflow=''}
+    overlay.querySelector('.book-close').addEventListener('click',closeBook);
+    overlay.addEventListener('click',e=>{if(e.target===overlay)closeBook()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&overlay.classList.contains('active'))closeBook()});
+    document.querySelectorAll('[data-book]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();openBook()}));
+    if(bookForm){
+      bookForm.addEventListener('submit',e=>{
+        e.preventDefault();
+        const n=document.getElementById('bk-name').value;
+        const p=document.getElementById('bk-phone').value;
+        const em=document.getElementById('bk-email').value;
+        const d=document.getElementById('bk-date').value;
+        const t=document.getElementById('bk-time').value;
+        const party=document.getElementById('bk-party').value;
+        const seat=document.getElementById('bk-seating').value;
+        const notes=document.getElementById('bk-notes').value;
+        const body=`Name: ${n}%0APhone: ${p}%0AEmail: ${em}%0ADate: ${d}%0ATime: ${t}%0AParty Size: ${party}%0ASeating: ${seat}%0ANotes: ${notes}`;
+        const subject=encodeURIComponent('Reservation Request — Bay Haven Inn');
+        window.location.href=`mailto:info@bayhaveninn.com?subject=${subject}&body=${body}`;
+        bookForm.style.display='none';
+        bookSuccess.style.display='block';
+        setTimeout(()=>{closeBook();bookForm.style.display='';bookSuccess.style.display='none';bookForm.reset()},4000);
+      });
+    }
+  }
 })();
