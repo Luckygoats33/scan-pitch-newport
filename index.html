@@ -2,35 +2,224 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Newport Business Demos</title>
+<title>Premium Websites for Local Businesses — Newport, Oregon</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Custom-built websites for local businesses. Fast, mobile-optimized, and designed to bring in customers. See live demos.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌊</text></svg>">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:system-ui,-apple-system,sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0a0a0a;color:#e8e8e8}
-.wrap{max-width:600px;width:90%;text-align:center;padding:4rem 2rem}
-h1{font-size:clamp(1.8rem,4vw,2.4rem);margin-bottom:.5rem;letter-spacing:-.02em}
-p{color:#888;margin-bottom:3rem;font-size:.95rem}
-.cards{display:grid;gap:1.5rem}
-a{display:block;padding:2rem;border:1px solid #222;border-radius:12px;text-decoration:none;color:#e8e8e8;transition:border-color .3s,transform .3s}
-a:hover{border-color:#555;transform:translateY(-2px)}
-.name{font-size:1.3rem;font-weight:600;margin-bottom:.25rem}
-.desc{color:#888;font-size:.85rem}
+:root{
+  --bg:#0b0b0d;--surface:#141418;--border:#1e1e24;
+  --text:#e4e0d8;--muted:#8a857d;--dim:#5a5650;
+  --gold:#c8a55c;--gold-dim:rgba(200,165,92,.12);
+  --serif:Georgia,"Times New Roman",serif;
+  --sans:system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased}
+
+/* ── HERO ── */
+.hero{min-height:85vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem 3rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 40%,rgba(200,165,92,.06),transparent 70%)}
+.hero-inner{max-width:680px;position:relative;z-index:1}
+.hero-eyebrow{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;font-weight:500}
+.hero h1{font-family:var(--serif);font-size:clamp(2rem,5vw,3.2rem);line-height:1.2;letter-spacing:-.02em;margin-bottom:1.5rem;text-wrap:balance}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero p{color:var(--muted);font-size:clamp(.95rem,1.8vw,1.1rem);max-width:520px;margin:0 auto 2.5rem}
+.hero-cta{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 2rem;background:var(--gold);color:#0b0b0d;font-weight:600;font-size:.9rem;border-radius:4px;text-decoration:none;transition:background .3s,transform .2s}
+.hero-cta:hover{background:#d4b06a;transform:translateY(-1px)}
+.hero-scroll{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);color:var(--dim);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:.5rem;text-decoration:none}
+.hero-scroll span{width:1px;height:28px;background:var(--dim);display:block;animation:pulse-line 2s ease-in-out infinite}
+@keyframes pulse-line{0%,100%{opacity:.3;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
+
+/* ── SECTION SHARED ── */
+section{padding:5rem 2rem}
+.section-inner{max-width:1000px;margin:0 auto}
+.eyebrow{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;font-weight:500}
+.section-title{font-family:var(--serif);font-size:clamp(1.6rem,3.5vw,2.2rem);line-height:1.25;margin-bottom:1rem;letter-spacing:-.015em}
+.section-desc{color:var(--muted);max-width:560px;font-size:.95rem;margin-bottom:3rem}
+
+/* ── DEMOS ── */
+.demos{background:var(--bg)}
+.demo-grid{display:grid;gap:2.5rem}
+@media(min-width:700px){.demo-grid{grid-template-columns:1fr 1fr}}
+.demo-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:border-color .3s,transform .3s}
+.demo-card:hover{border-color:rgba(200,165,92,.3);transform:translateY(-3px)}
+.demo-thumb{aspect-ratio:16/9;overflow:hidden;position:relative;background:#0a0a0a}
+.demo-thumb img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .6s}
+.demo-card:hover .demo-thumb img{transform:scale(1.03)}
+.demo-badge{position:absolute;top:.75rem;right:.75rem;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);padding:.3rem .7rem;border-radius:3px;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.demo-body{padding:1.5rem}
+.demo-body h3{font-family:var(--serif);font-size:1.25rem;margin-bottom:.35rem}
+.demo-body .demo-type{color:var(--muted);font-size:.82rem;margin-bottom:1rem}
+.demo-scores{display:flex;gap:1rem;margin-bottom:1.25rem;flex-wrap:wrap}
+.demo-score{font-size:.7rem;letter-spacing:.05em;color:var(--muted)}
+.demo-score strong{color:#4ade80;font-size:.85rem;font-weight:700;display:block;font-variant-numeric:tabular-nums}
+.demo-link{display:inline-flex;align-items:center;gap:.4rem;color:var(--gold);font-size:.85rem;font-weight:500;text-decoration:none;transition:gap .3s}
+.demo-link:hover{gap:.7rem}
+.demo-link::after{content:'→'}
+
+/* ── FEATURES ── */
+.features{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.feat-grid{display:grid;gap:2rem}
+@media(min-width:600px){.feat-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:900px){.feat-grid{grid-template-columns:repeat(3,1fr)}}
+.feat{padding:1.5rem;border:1px solid var(--border);border-radius:6px;background:var(--bg)}
+.feat-icon{font-size:1.5rem;margin-bottom:.75rem}
+.feat h3{font-size:.95rem;margin-bottom:.4rem;font-weight:600}
+.feat p{color:var(--muted);font-size:.85rem;line-height:1.65}
+
+/* ── PROCESS ── */
+.process-steps{display:grid;gap:1.5rem;counter-reset:step}
+@media(min-width:700px){.process-steps{grid-template-columns:repeat(3,1fr)}}
+.step{padding:1.5rem;border:1px solid var(--border);border-radius:6px;position:relative;counter-increment:step}
+.step::before{content:counter(step);font-family:var(--serif);font-size:2.5rem;color:var(--gold);opacity:.2;line-height:1;margin-bottom:.75rem;display:block}
+.step h3{font-size:.95rem;font-weight:600;margin-bottom:.35rem}
+.step p{color:var(--muted);font-size:.85rem;line-height:1.6}
+
+/* ── CTA ── */
+.cta-section{text-align:center;padding:6rem 2rem}
+.cta-section .section-title{max-width:500px;margin:0 auto 1rem}
+.cta-section .section-desc{margin:0 auto 2.5rem}
+.cta-btn{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 2.5rem;background:var(--gold);color:#0b0b0d;font-weight:600;font-size:.95rem;border-radius:4px;text-decoration:none;transition:background .3s,transform .2s}
+.cta-btn:hover{background:#d4b06a;transform:translateY(-1px)}
+.cta-or{color:var(--dim);font-size:.85rem;margin-top:1.25rem}
+.cta-or a{color:var(--muted);text-decoration:underline;text-underline-offset:3px}
+.cta-or a:hover{color:var(--text)}
+
+/* ── FOOTER ── */
+footer{text-align:center;padding:2rem;border-top:1px solid var(--border);color:var(--dim);font-size:.75rem}
 </style>
 </head>
 <body>
-<div class="wrap">
-<h1>Newport, Oregon</h1>
-<p>Premium website demos for local businesses</p>
-<div class="cards">
-<a href="bay-haven-inn/">
-<div class="name">Bay Haven Inn</div>
-<div class="desc">Newport's Original Waterfront Bar &middot; Est. 1908</div>
-</a>
-<a href="kings-barber-shop/">
-<div class="name">King's Barber Shop</div>
-<div class="desc">Classic Cuts &middot; Straight Razor Shaves &middot; Newport, OR</div>
-</a>
-</div>
-</div>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Local Business Websites</div>
+    <h1>Your customers are searching.<br><em>Can they find you?</em></h1>
+    <p>We build fast, mobile-optimized websites for local businesses. No templates. No monthly contracts. Just a site that works as hard as you do.</p>
+    <a href="#demos" class="hero-cta">See Live Demos</a>
+  </div>
+  <a href="#demos" class="hero-scroll">Scroll<span></span></a>
+</section>
+
+<section class="demos" id="demos">
+  <div class="section-inner">
+    <div class="eyebrow">Live Demos</div>
+    <h2 class="section-title">Built for real businesses, ready today</h2>
+    <p class="section-desc">These are fully functional websites — not mockups. Click through to see the real thing, on any device.</p>
+    <div class="demo-grid">
+      <a href="bay-haven-inn/" class="demo-card" style="text-decoration:none;color:inherit">
+        <div class="demo-thumb">
+          <img src="bay-haven-inn/images/the-bayfront.webp" alt="Bay Haven Inn website" width="1344" height="768" loading="lazy">
+          <div class="demo-badge">Bar &amp; Grill</div>
+        </div>
+        <div class="demo-body">
+          <h3>Bay Haven Inn</h3>
+          <div class="demo-type">Newport's Original Waterfront Bar &middot; Est. 1908</div>
+          <div class="demo-scores">
+            <div class="demo-score"><strong>100</strong>Performance</div>
+            <div class="demo-score"><strong>100</strong>Accessibility</div>
+            <div class="demo-score"><strong>100</strong>SEO</div>
+          </div>
+          <span class="demo-link">View Live Site</span>
+        </div>
+      </a>
+      <a href="kings-barber-shop/" class="demo-card" style="text-decoration:none;color:inherit">
+        <div class="demo-thumb">
+          <img src="kings-barber-shop/images/inside-kings-barber-shop.webp" alt="King's Barber Shop website" width="1344" height="768" loading="lazy">
+          <div class="demo-badge">Barber Shop</div>
+        </div>
+        <div class="demo-body">
+          <h3>King's Barber Shop</h3>
+          <div class="demo-type">Classic Cuts &middot; Straight Razor Shaves &middot; Newport, OR</div>
+          <div class="demo-scores">
+            <div class="demo-score"><strong>96</strong>Performance</div>
+            <div class="demo-score"><strong>100</strong>Accessibility</div>
+            <div class="demo-score"><strong>100</strong>SEO</div>
+          </div>
+          <span class="demo-link">View Live Site</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="section-inner">
+    <div class="eyebrow">What You Get</div>
+    <h2 class="section-title">Everything a local business needs online</h2>
+    <p class="section-desc">No filler. Every feature is built to drive foot traffic and phone calls.</p>
+    <div class="feat-grid">
+      <div class="feat">
+        <div class="feat-icon">&#9889;</div>
+        <h3>Blazing Fast</h3>
+        <p>Sub-2-second load times. Google ranks fast sites higher, and customers won't wait for slow ones.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">&#128241;</div>
+        <h3>Mobile-First</h3>
+        <p>Over 70% of local searches happen on phones. Your site looks and works perfectly on every screen.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">&#128269;</div>
+        <h3>Google-Ready</h3>
+        <p>Structured data, meta tags, and local SEO baked in. Show up when people search for what you do.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">&#128197;</div>
+        <h3>Online Booking</h3>
+        <p>Built-in reservation and appointment forms. Customers can book without picking up the phone.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">&#128506;</div>
+        <h3>Maps &amp; Directions</h3>
+        <p>Interactive Google Maps embed with your exact location. One tap to navigate on mobile.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">&#11088;</div>
+        <h3>Reviews &amp; Trust</h3>
+        <p>Your best reviews front and center. Social proof that turns browsers into visitors.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process">
+  <div class="section-inner">
+    <div class="eyebrow">How It Works</div>
+    <h2 class="section-title">Three steps to your new website</h2>
+    <p class="section-desc">No meetings, no committees, no six-month timelines. We move fast.</p>
+    <div class="process-steps">
+      <div class="step">
+        <h3>We research your business</h3>
+        <p>Your hours, menu, services, photos, reviews, social profiles — we gather everything and build a site around the real business.</p>
+      </div>
+      <div class="step">
+        <h3>You review and approve</h3>
+        <p>We send you a live preview. You point out anything that needs changing. We revise until it's exactly right.</p>
+      </div>
+      <div class="step">
+        <h3>Your site goes live</h3>
+        <p>We launch, connect your domain, and set up Google. You start showing up in search results immediately.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="section-inner">
+    <div class="eyebrow">Ready?</div>
+    <h2 class="section-title">Let's build your website</h2>
+    <p class="section-desc">$500 flat build fee, $30/month hosting and support. No contracts, cancel anytime.</p>
+    <a href="mailto:will.wiedenmann@gmail.com?subject=Website%20Inquiry" class="cta-btn">Get Started</a>
+    <div class="cta-or">or call <a href="tel:5412651234">(541) 265-1234</a></div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 &middot; Newport Web Design</p>
+</footer>
+
 </body>
 </html>
