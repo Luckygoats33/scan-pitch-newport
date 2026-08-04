@@ -99,6 +99,11 @@ body.loaded .grain{opacity:.04;transition:opacity 1s}
 .nav-cta{background:var(--gold)!important;color:#090c0f!important;padding:.45rem 1.2rem;font-weight:700;letter-spacing:.1em}
 .nav-cta::after{display:none!important}
 .nav-cta:hover{background:#dbb76a!important}
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:6px;flex-direction:column;gap:4px}
+.nav-toggle span{display:block;width:20px;height:2px;background:var(--gold);border-radius:1px;transition:transform .3s,opacity .3s}
+.nav.open .nav-toggle span:nth-child(1){transform:translateY(6px)rotate(45deg)}
+.nav.open .nav-toggle span:nth-child(2){opacity:0}
+.nav.open .nav-toggle span:nth-child(3){transform:translateY(-6px)rotate(-45deg)}
 
 /* ═══ SOCIAL LINKS ═══ */
 .ftr-social{display:flex;gap:.75rem;margin-top:1.25rem}
@@ -285,7 +290,13 @@ body{padding-bottom:56px}
   .visit-grid{grid-template-columns:1fr}
 }
 @media(max-width:640px){
-  .nav{padding:.6rem 1.25rem}.nav-l{gap:1rem}.nav-l a{font-size:.58rem;letter-spacing:.1em}
+  .nav{padding:.6rem 1.25rem}.nav-b{font-size:.72rem}
+  .nav-toggle{display:flex}
+  .nav-l{position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:rgba(9,12,15,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.08);max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
+  .nav.open .nav-l{max-height:360px}
+  .nav-l li{border-top:1px solid rgba(255,255,255,.06)}
+  .nav-l a{display:block;padding:.9rem 1.5rem;font-size:.7rem;letter-spacing:.12em}
+  .nav-cta{margin:.6rem 1.5rem;display:inline-block;text-align:center}
   .scroll-cue{display:none}.gallery-hint{display:none}
   .hero-btns{flex-direction:column}
 }
@@ -319,6 +330,7 @@ body{padding-bottom:56px}
 
 <nav class="nav" role="navigation">
   <div class="nav-b">Bay Haven Inn</div>
+  <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <ul class="nav-l">
     <li><a href="#about" data-spy>About</a></li>
     <li><a href="#music" data-spy>Music</a></li>

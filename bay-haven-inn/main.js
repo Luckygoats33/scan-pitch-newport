@@ -120,6 +120,11 @@
   // ── NAV ──
   const nav=document.querySelector('.nav');
   window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>100),{passive:true});
+  const navToggle=nav.querySelector('.nav-toggle');
+  if(navToggle){
+    navToggle.addEventListener('click',()=>{nav.classList.toggle('open');navToggle.setAttribute('aria-expanded',nav.classList.contains('open'))});
+    nav.querySelectorAll('.nav-l a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');navToggle.setAttribute('aria-expanded','false')}));
+  }
 
   // ── SCROLL SPY ──
   const sections=document.querySelectorAll('[id]');const navLinks=document.querySelectorAll('[data-spy]');
