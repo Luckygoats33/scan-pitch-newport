@@ -15,11 +15,11 @@
   document.querySelectorAll('[data-split]').forEach(el=>{
     const raw=el.innerHTML;const parts=raw.split(/(&[^;]+;|<[^>]+>)/g);let ci=0;
     el.innerHTML=parts.map(part=>{
-      if(part.startsWith('&')){ci++;return `<span class="char" style="animation-delay:${2.2+ci*0.04}s">${part}</span>`}
+      if(part.startsWith('&')){ci++;return `<span class="char" style="animation-delay:${.9+ci*0.04}s">${part}</span>`}
       if(part.startsWith('<'))return part;
       return part.split('').map(c=>{
         if(c===' '){ci++;return '<span style="display:inline-block;width:.2em"></span>'}
-        const s=`<span class="char" style="animation-delay:${2.2+ci*0.04}s">${c}</span>`;ci++;return s
+        const s=`<span class="char" style="animation-delay:${.9+ci*0.04}s">${c}</span>`;ci++;return s
       }).join('');
     }).join('');
   });
