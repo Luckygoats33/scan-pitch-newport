@@ -1,14 +1,4 @@
 (function(){
-  // ── VIDEO HERO (blob fetch for hosts without Range support) ──
-  document.querySelectorAll('video[autoplay]').forEach(v=>{
-    const src=v.querySelector('source');
-    if(!src)return;
-    fetch(src.src).then(r=>r.blob()).then(b=>{
-      v.src=URL.createObjectURL(b);
-      v.play().catch(()=>{});
-    }).catch(()=>{});
-  });
-
   // Preloader
   const lt=document.getElementById('loader-text');
   const name="KING'S BARBER";
