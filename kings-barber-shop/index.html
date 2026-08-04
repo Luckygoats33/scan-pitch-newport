@@ -78,6 +78,7 @@ body.loaded .grain{opacity:.03;transition:opacity 1s}
 
 /* ═══ SVC CARD NUMBERS ═══ */
 .svc-num{font-family:var(--hd);font-size:clamp(2.5rem,5vw,3.5rem);color:var(--red);opacity:.1;line-height:1;margin-bottom:.5rem;letter-spacing:-.02em}
+.svc-num::before{content:attr(data-num)}
 
 /* ═══ NAV ═══ */
 .nav{position:fixed;top:3px;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:.9rem 2.5rem;transform:translateY(-100%);animation:navIn .6s .6s var(--ease) forwards;transition:padding .3s,background .3s;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(16px)saturate(1.3);-webkit-backdrop-filter:blur(16px)saturate(1.3)}
@@ -459,11 +460,11 @@ body{padding-bottom:56px}
       <h2 class="sh rv d1">Classic Barbering, Done Right</h2>
     </div>
     <div class="svc-track" id="svc-track">
-      <div class="svc-card"><div class="svc-num" aria-hidden="true">01</div><h3>Haircut</h3><p>Precision cuts tailored to your style. Fades, tapers, classic side parts, textured crops&mdash;done with clippers, shears, and a steady hand.</p></div>
-      <div class="svc-card"><div class="svc-num" aria-hidden="true">02</div><h3>Beard Trim</h3><p>Shaped and cleaned up, from a quick edge-up to a full sculpt. Hot towel finish. Your beard, but sharper.</p></div>
-      <div class="svc-card"><div class="svc-num" aria-hidden="true">03</div><h3>Straight Razor Shave</h3><p>Hot lather, warm towel, straight blade. The way it was done before everything got fast and disposable.</p></div>
-      <div class="svc-card"><div class="svc-num" aria-hidden="true">04</div><h3>Kids&rsquo; Cuts</h3><p>Patient, careful, and no tears (usually). Paul works with kids the same way he works with everyone&mdash;with care.</p></div>
-      <div class="svc-card"><div class="svc-num" aria-hidden="true">05</div><h3>Beard Design</h3><p>Custom beard shaping for every face. Clean lines, natural flow, and the kind of shape that looks like it grew that way.</p></div>
+      <div class="svc-card"><div class="svc-num" aria-hidden="true" data-num="01"></div><h3>Haircut</h3><p>Precision cuts tailored to your style. Fades, tapers, classic side parts, textured crops&mdash;done with clippers, shears, and a steady hand.</p></div>
+      <div class="svc-card"><div class="svc-num" aria-hidden="true" data-num="02"></div><h3>Beard Trim</h3><p>Shaped and cleaned up, from a quick edge-up to a full sculpt. Hot towel finish. Your beard, but sharper.</p></div>
+      <div class="svc-card"><div class="svc-num" aria-hidden="true" data-num="03"></div><h3>Straight Razor Shave</h3><p>Hot lather, warm towel, straight blade. The way it was done before everything got fast and disposable.</p></div>
+      <div class="svc-card"><div class="svc-num" aria-hidden="true" data-num="04"></div><h3>Kids&rsquo; Cuts</h3><p>Patient, careful, and no tears (usually). Paul works with kids the same way he works with everyone&mdash;with care.</p></div>
+      <div class="svc-card"><div class="svc-num" aria-hidden="true" data-num="05"></div><h3>Beard Design</h3><p>Custom beard shaping for every face. Clean lines, natural flow, and the kind of shape that looks like it grew that way.</p></div>
     </div>
     <p class="svc-hint">Drag to explore</p>
   </div>
