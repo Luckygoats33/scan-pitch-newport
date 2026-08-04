@@ -99,7 +99,7 @@
         img.style.transform=`translateY(${(p-.5)*30}px)scale(1.08)`;
       });
     },{passive:true});
-    const heroImg=document.querySelector('.hero-iw img');
+    const heroImg=document.querySelector('.hero-iw video,.hero-iw img');
     if(heroImg){
       window.addEventListener('scroll',()=>{const y=window.scrollY;if(y<window.innerHeight*1.5)heroImg.style.transform=`scale(${1.12-y*.00008}) translateY(${y*.08}px)`},{passive:true});
     }

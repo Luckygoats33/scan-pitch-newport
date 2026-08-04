@@ -18,7 +18,7 @@
 
   // ── PARALLAX ──
   if(window.innerWidth>640){
-    const pxEls=document.querySelectorAll('.hero-bg img,.about-img img,.ent-bg img,.heritage-bg img,.reviews-bg img,.garden-img img,.cta-bg img');
+    const pxEls=document.querySelectorAll('.about-img img,.ent-bg img,.heritage-bg img,.reviews-bg img,.garden-img img,.cta-bg img');
     window.addEventListener('scroll',()=>{
       pxEls.forEach(img=>{
         const rect=img.closest('section,.hero,.about,.garden,.ent,.reviews,.cta,.heritage')?.getBoundingClientRect();
@@ -160,7 +160,7 @@
   if(window.innerWidth>640){
     const heroEl=document.querySelector('.hero');
     const heroTxt=document.querySelector('.hero-c');
-    const heroBg=document.querySelector('.hero-bg img');
+    const heroBg=document.querySelector('.hero-bg video,.hero-bg img');
     if(heroEl&&heroTxt&&heroBg){
       window.addEventListener('scroll',()=>{
         const y=window.scrollY;
