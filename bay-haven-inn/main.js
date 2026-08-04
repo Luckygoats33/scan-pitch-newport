@@ -3,7 +3,7 @@
   const loaderText=document.getElementById('loader-text');
   const name='BAY HAVEN INN';
   loaderText.innerHTML=name.split('').map((c,i)=>`<span style="animation-delay:${i*0.06}s">${c==' '?'&nbsp;':c}</span>`).join('');
-  setTimeout(()=>{document.getElementById('loader').classList.add('done');document.body.classList.add('loaded')},2600);
+  setTimeout(()=>{document.getElementById('loader').classList.add('done');document.body.classList.add('loaded')},800);
 
   // ── MAGNETIC BUTTONS ──
   document.querySelectorAll('[data-magnetic]').forEach(btn=>{

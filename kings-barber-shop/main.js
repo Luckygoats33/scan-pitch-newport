@@ -3,7 +3,7 @@
   const lt=document.getElementById('loader-text');
   const name="KING'S BARBER";
   lt.innerHTML=name.split('').map((c,i)=>`<span style="animation-delay:${.3+i*0.05}s">${c===' '?'&nbsp;':c}</span>`).join('');
-  setTimeout(()=>{document.getElementById('loader').classList.add('done');document.body.classList.add('loaded')},2400);
+  setTimeout(()=>{document.getElementById('loader').classList.add('done');document.body.classList.add('loaded')},800);
 
   // Magnetic buttons
   document.querySelectorAll('[data-magnetic]').forEach(btn=>{

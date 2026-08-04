@@ -99,7 +99,7 @@ body.loaded .grain{opacity:.03;transition:opacity 1s}
 /* ═══ 1. HERO — Split with logo ═══ */
 .hero{display:grid;grid-template-columns:1fr 1fr;min-height:100vh;min-height:100dvh}
 .hero-txt{display:flex;flex-direction:column;justify-content:center;padding:7rem clamp(2rem,4vw,5rem) 4rem;position:relative;z-index:1;background:var(--bg)}
-.hero-logo{width:clamp(90px,14vw,130px);height:auto;margin-bottom:1.25rem;opacity:0;animation:fu .8s 2s var(--ease) forwards;border-radius:50%;box-shadow:0 4px 30px color-mix(in srgb,var(--ink) 15%,transparent)}
+.hero-logo{width:clamp(100px,15vw,140px);height:auto;margin-bottom:1.25rem;opacity:0;animation:fu .8s .6s var(--ease) forwards;border-radius:50%;box-shadow:0 4px 30px color-mix(in srgb,var(--ink) 25%,transparent);border:2px solid color-mix(in srgb,var(--ink) 15%,transparent)}
 .hero-lab{font-size:.58rem;letter-spacing:.55em;text-transform:uppercase;color:var(--red);margin-bottom:1.75rem;opacity:0;animation:fu .8s 2.1s var(--ease) forwards;display:flex;align-items:center;gap:.85rem}
 .hero-lab::before{content:'';width:25px;height:1px;background:var(--red);animation:lg 1s 2s var(--ease) forwards;transform-origin:left;transform:scaleX(0)}
 @keyframes lg{to{transform:scaleX(1)}}
@@ -292,7 +292,7 @@ body{padding-bottom:56px}
 </style>
 
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BarberShop","name":"King's Barber Shop","description":"Classic one-chair barber shop in Newport, Oregon.","telephone":"+1-951-378-4821","address":{"@type":"PostalAddress","streetAddress":"1164 SW Coast Hwy, Suite E","addressLocality":"Newport","addressRegion":"OR","postalCode":"97365","addressCountry":"US"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Tuesday","Wednesday","Thursday","Friday"],"opens":"09:00","closes":"18:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"09:00","closes":"13:00"}],"priceRange":"$$","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.5","reviewCount":"96"},"geo":{"@type":"GeoCoordinates","latitude":"44.6252","longitude":"-124.0520"}}
+{"@context":"https://schema.org","@type":"BarberShop","name":"King's Barber Shop","description":"Classic one-chair barber shop in Newport, Oregon.","telephone":"+1-541-265-4821","address":{"@type":"PostalAddress","streetAddress":"1164 SW Coast Hwy, Suite E","addressLocality":"Newport","addressRegion":"OR","postalCode":"97365","addressCountry":"US"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Tuesday","Wednesday","Thursday","Friday"],"opens":"09:00","closes":"18:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"09:00","closes":"13:00"}],"priceRange":"$$","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.5","reviewCount":"96"},"geo":{"@type":"GeoCoordinates","latitude":"44.6252","longitude":"-124.0520"}}
 </script>
 </head>
 <body>
@@ -328,7 +328,7 @@ body{padding-bottom:56px}
     <h1 class="hero-name" data-split>King&rsquo;s Barber Shop</h1>
     <p class="hero-tag">Classic cuts, straight razor shaves, and real conversation. One barber, no rush, every detail right.</p>
     <div class="hero-btns">
-      <a href="tel:9513784821" class="btn-r" data-magnetic>Call (951) 378-4821</a>
+      <a href="tel:5412654821" class="btn-r" data-magnetic>Call (541) 265-4821</a>
       <a href="#visit" class="btn-o" data-magnetic>Hours &amp; Location</a>
     </div>
     <div class="hero-stats">
@@ -475,7 +475,7 @@ body{padding-bottom:56px}
   <div class="visit-grid">
     <div class="visit-b rv d1"><h3>Hours</h3><ul><li>Tuesday&ndash;Friday: 9 AM&ndash;6 PM</li><li>Saturday: 9 AM&ndash;1 PM</li><li>Sunday&ndash;Monday: Closed</li></ul></div>
     <div class="visit-b rv d2"><h3>Location</h3><p>1164 SW Coast Hwy<br>Suite E, Newport, OR 97365</p><p style="margin-top:.5rem"><a href="https://maps.google.com/?q=1164+SW+Coast+Hwy+Suite+E+Newport+OR+97365" target="_blank" rel="noopener">Get Directions &rarr;</a></p></div>
-    <div class="visit-b rv d3" style="grid-column:span 2"><h3>Contact</h3><p><a href="tel:9513784821" style="font-family:var(--hd);font-size:1.3rem">(951) 378-4821</a></p><p style="margin-top:.3rem;font-size:.82rem;color:var(--mut)">Walk-ins welcome. Call for availability.</p></div>
+    <div class="visit-b rv d3" style="grid-column:span 2"><h3>Contact</h3><p><a href="tel:5412654821" style="font-family:var(--hd);font-size:1.3rem">(541) 265-4821</a></p><p style="margin-top:.3rem;font-size:.82rem;color:var(--mut)">Walk-ins welcome. Call for availability.</p></div>
   </div>
 </section>
 
@@ -488,12 +488,12 @@ body{padding-bottom:56px}
     <div class="ey rv" style="justify-content:center;color:var(--red)">Ready?</div>
     <h2 style="font-family:var(--hd);font-size:clamp(2.5rem,6.5vw,4.5rem);color:#fff;line-height:1.02;margin-bottom:.5rem" class="rv">Your Next Cut<br>Is Waiting</h2>
     <p class="rv d1" style="font-family:Georgia,serif;font-style:italic;font-size:clamp(.95rem,2vw,1.15rem);color:rgba(255,255,255,.4);max-width:380px;margin:0 auto;line-height:1.7">Walk in or call ahead. Either way, you&rsquo;ll leave looking sharp.</p>
-    <a href="tel:9513784821" class="cta-phone rv d2">(951) 378-4821</a>
+    <a href="tel:5412654821" class="cta-phone rv d2">(541) 265-4821</a>
     <p class="cta-addr rv d3">1164 SW Coast Hwy, Suite E &middot; Newport, OR</p>
   </div>
 </section>
 
-<div class="sticky"><div class="sticky-row"><a href="tel:9513784821" class="s-call">Call Now</a><a href="#visit" class="s-book">Book Appointment</a></div></div>
+<div class="sticky"><div class="sticky-row"><a href="tel:5412654821" class="s-call">Call Now</a><a href="#visit" class="s-book">Book Appointment</a></div></div>
 <footer class="ftr">
   <div class="ftr-stripe"></div>
   <div class="ftr-glow"></div>
@@ -528,7 +528,7 @@ body{padding-bottom:56px}
     </div>
     <div class="ftr-col">
       <h4>Contact</h4>
-      <a href="tel:9513784821" class="ftr-phone">(951) 378-4821</a>
+      <a href="tel:5412654821" class="ftr-phone">(541) 265-4821</a>
       <p>1164 SW Coast Hwy<br>Suite E, Newport, OR 97365</p>
       <p style="margin-top:.6rem"><a href="https://maps.google.com/?q=1164+SW+Coast+Hwy+Suite+E+Newport+OR+97365" target="_blank" rel="noopener">Get Directions &rarr;</a></p>
     </div>
