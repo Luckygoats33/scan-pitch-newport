@@ -48,26 +48,6 @@
   initMG('svc-track');
   initMG('k-gallery-track');
 
-  // ── TEXT SCRAMBLE ──
-  (function(){
-    const SC='!@#$%^&*()_+-=[]{}|;:,.<>?/~`0123456789';
-    const els=document.querySelectorAll('.scramble');if(!els.length)return;
-    const done=new WeakSet();
-    function rC(){return SC[Math.floor(Math.random()*SC.length)]}
-    function scramble(el){
-      if(done.has(el))return;done.add(el);
-      const orig=el.textContent;const chars=orig.split('');
-      const st=chars.map(c=>({target:c,current:c===' '?' ':rC(),resolved:c===' ',cycles:4}));
-      el.textContent=st.map(s=>s.current).join('');
-      let ci=0;
-      for(let i=0;i<chars.length;i++){if(st[i].resolved)continue;
-        ((idx,delay)=>{setTimeout(()=>{st[idx].resolved=true;st[idx].current=st[idx].target;el.textContent=st.map(s=>s.current).join('')},delay+200)})(i,ci*30);ci++}
-      const tick=setInterval(()=>{let any=false;for(let j=0;j<st.length;j++){if(!st[j].resolved){st[j].current=rC();any=true}}if(!any){clearInterval(tick);return}el.textContent=st.map(s=>s.current).join('')},50);
-    }
-    const sObs=new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting){scramble(e.target);sObs.unobserve(e.target)}})},{threshold:.15,rootMargin:'0px 0px -50px 0px'});
-    els.forEach(el=>sObs.observe(el));
-  })();
-
   // ── IMAGE WIPE REVEAL ──
   (function(){
     const sty=document.createElement('style');sty.textContent='.img-wipe{clip-path:inset(0 100% 0 0);transition:clip-path 1.2s cubic-bezier(.16,1,.3,1);will-change:clip-path}.img-wipe[data-wipe="right"]{clip-path:inset(0 0 0 100%)}.img-wipe[data-wipe="up"]{clip-path:inset(100% 0 0 0)}.img-wipe.is-revealed{clip-path:inset(0 0 0 0)!important}';

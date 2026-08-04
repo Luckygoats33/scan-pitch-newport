@@ -9,7 +9,7 @@
 <meta property="og:type" content="website">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#c8a55c">
-<link rel="preload" href="images/bay-haven-inn-waterfront-exterior.webp" as="image" type="image/webp">
+<link rel="preload" href="images/the-bayfront.webp" as="image" type="image/webp">
 <link rel="preload" href="fonts/playfair-bold.woff2" as="font" type="font/woff2" crossorigin>
 <style>
 
@@ -62,7 +62,7 @@ body.loaded .grain{opacity:.04;transition:opacity 1s}
 .txt-marquee{overflow:hidden;white-space:nowrap;padding:1rem 0;position:relative}
 .txt-marquee-track{display:inline-flex;animation:txtScroll 25s linear infinite}
 @keyframes txtScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.txt-marquee span{font-family:var(--hd);font-size:clamp(4rem,12vw,10rem);color:transparent;-webkit-text-stroke:1px rgba(200,165,92,.25);letter-spacing:.06em;padding:0 clamp(1rem,3vw,3rem);flex-shrink:0;text-transform:uppercase}
+.txt-marquee span{font-family:var(--hd);font-size:clamp(4rem,12vw,10rem);color:transparent;-webkit-text-stroke:2px var(--gold);letter-spacing:.06em;padding:0 clamp(1rem,3vw,3rem);flex-shrink:0;text-transform:uppercase;text-shadow:0 0 40px rgba(200,165,92,.15)}
 
 /* ═══ 3D TILT CARDS ═══ */
 .tilt{transition:transform .4s var(--ease);transform-style:preserve-3d;perspective:800px}
@@ -361,15 +361,15 @@ body{padding-bottom:56px}
     <li><a href="#gallery" data-spy>Gallery</a></li>
     <li><a href="#reviews" data-spy>Reviews</a></li>
     <li><a href="#visit" data-spy>Visit</a></li>
-    <li><a href="#" class="nav-cta" data-book>Book Appointment</a></li>
+    <li><a href="tel:5412657271" class="nav-cta">Call Now</a></li>
   </ul>
 </nav>
 
 <!-- ═══ 1. HERO ═══ -->
 <section class="hero">
   <div class="hero-bg">
-    <video autoplay muted loop playsinline preload="auto" src="hero.mp4" poster="images/bay-haven-inn-waterfront-exterior.webp" width="1344" height="768"></video>
-    <img fetchpriority="high" src="images/bay-haven-inn-waterfront-exterior.webp" alt="Bay Haven Inn waterfront exterior" width="1344" height="768">
+    <video autoplay muted loop playsinline preload="auto" src="hero.mp4" poster="images/the-bayfront.webp" width="1344" height="768"></video>
+    <img fetchpriority="high" src="images/the-bayfront.webp" alt="Yaquina Bay Bridge and Newport Bayfront" width="1344" height="768">
   </div>
   <div class="hero-c">
     <p class="hero-ey">Newport, Oregon &middot; Since 1908</p>
@@ -406,7 +406,7 @@ body{padding-bottom:56px}
   <div class="about-img"><img src="images/inside-bay-haven-inn.webp" alt="Inside Bay Haven Inn" width="1344" height="768" loading="lazy" class="img-wipe" data-wipe="left"></div>
   <div class="about-txt">
     <div class="ey rv-l">The Story</div>
-    <h2 class="sh rv-l d1 scramble">One Hundred Eighteen Years on the Water</h2>
+    <h2 class="sh rv-l d1">One Hundred Eighteen Years on the Water</h2>
     <div class="sp rv-l d2">
       <p>Bay Haven Inn has stood on Bay Boulevard since 1908. Through prohibition, world wars, fishing booms and busts, it stayed open. The bar top is worn smooth. The walls are covered in the kind of history you can&rsquo;t fake.</p>
       <p>This is not a craft cocktail bar. It&rsquo;s a place where fishermen and visitors sit on the same stools, where someone picks up a guitar on Sunday afternoon and the whole room joins in.</p>
@@ -421,7 +421,7 @@ body{padding-bottom:56px}
   <div class="ent-c">
     <div class="ent-left">
       <div class="ey rv">Live Entertainment</div>
-      <h2 class="sh rv d1 scramble">Every Night Is a Show</h2>
+      <h2 class="sh rv d1">Every Night Is a Show</h2>
       <p class="sp rv d2">No cover, no pretension. Just music, karaoke, and the kind of crowd that makes a bar feel alive.</p>
     </div>
     <div class="ent-cards">
@@ -480,7 +480,7 @@ body{padding-bottom:56px}
 </section>
 
 <!-- ═══ 7. REVIEWS — Featured + staggered grid ═══ -->
-<section class="reviews clip-rv" id="reviews">
+<section class="reviews" id="reviews">
   <div class="reviews-bg"><img src="images/neon-bar-signs.webp" alt="Neon bar signs" width="1344" height="768" loading="lazy"></div>
   <div class="reviews-c">
     <div class="rev-featured rv">
@@ -512,7 +512,7 @@ body{padding-bottom:56px}
 <section class="garden clip-rv">
   <div class="garden-txt">
     <div class="ey rv-r">The Grounds</div>
-    <h2 class="sh rv-r d1 scramble">Beer Garden &amp; Horseshoe Pits</h2>
+    <h2 class="sh rv-r d1">Beer Garden &amp; Horseshoe Pits</h2>
     <div class="sp rv-r d2">
       <p>Out back, a landscaped beer garden with covered seating lets you drink outside rain or shine. The horseshoe pits see real competition on warm evenings. Your dog is welcome inside and out.</p>
     </div>
@@ -538,7 +538,7 @@ body{padding-bottom:56px}
 
 <!-- ═══ 10. CTA — Dramatic finale ═══ -->
 <section class="cta">
-  <div class="cta-bg vid-bg"><img src="images/oregon-coast.webp" alt="Oregon coast waves" width="1344" height="768" loading="lazy"></div>
+  <div class="cta-bg vid-bg"><img src="images/newport-harbor-at-golden-hour.webp" alt="Newport Harbor at golden hour" width="1344" height="768" loading="lazy"></div>
   <div class="morph-blob" style="top:20%;left:60%"></div>
   <div class="morph-blob" style="top:50%;left:20%;animation-delay:-5s;width:clamp(200px,35vw,400px);height:clamp(200px,35vw,400px)"></div>
   <div class="cta-c">
