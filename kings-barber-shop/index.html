@@ -123,7 +123,7 @@ body.loaded .grain{opacity:.03;transition:opacity 1s}
 .btn-r:hover{background:var(--red2);box-shadow:0 0 40px color-mix(in srgb,var(--red) 25%,transparent);transform:translateY(-3px)scale(1.02)}
 .btn-o{padding:1rem 2.5rem;color:var(--ink);font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;border:1px solid var(--bdr);transition:all .4s var(--ease)}.btn-o:hover{border-color:var(--red);color:var(--red)}
 .hero-stats{margin-top:2rem;display:flex;gap:2.5rem;opacity:0;animation:fu .9s 1.6s var(--ease) forwards}
-.hero-stat{font-size:.72rem;color:var(--mut)}.hero-stat strong{display:block;color:var(--ink);font-family:var(--hd);font-size:1rem;margin-bottom:.1rem}
+.hero-stat{font-size:.72rem;color:var(--text)}.hero-stat strong{display:block;color:var(--ink);font-family:var(--hd);font-size:1rem;margin-bottom:.1rem}
 .hero-iw{position:relative;overflow:hidden}
 .hero-iw img,.hero-iw video{width:100%;height:100%;object-fit:cover}
 .hero-iw img{animation:heroZ 25s ease-out forwards}
@@ -231,20 +231,20 @@ body{padding-bottom:56px}
 .ftr-brand{max-width:320px}
 .ftr-brand-logo{width:60px;height:60px;border-radius:50%;margin-bottom:1rem;opacity:.85}
 .ftr-brand h3{font-family:var(--hd);font-size:clamp(1.3rem,2.5vw,1.8rem);color:var(--bg);margin-bottom:.85rem;line-height:1.1}
-.ftr-brand p{font-size:.85rem;line-height:1.8;color:color-mix(in srgb,var(--bg) 45%,transparent);margin-bottom:1rem}
-.ftr-brand-tag{font-family:var(--hd);font-style:italic;font-size:.8rem;color:var(--red);letter-spacing:.04em}
-.ftr-col h4{font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;color:var(--red);margin-bottom:1.1rem;display:flex;align-items:center;gap:.6rem}
-.ftr-col h4::before{content:'';width:14px;height:1px;background:var(--red)}
+.ftr-brand p{font-size:.85rem;line-height:1.8;color:color-mix(in srgb,var(--bg) 65%,transparent);margin-bottom:1rem}
+.ftr-brand-tag{font-family:var(--hd);font-style:italic;font-size:.8rem;color:#d4756a;letter-spacing:.04em}
+.ftr-col h4{font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;color:#d4756a;margin-bottom:1.1rem;display:flex;align-items:center;gap:.6rem}
+.ftr-col h4::before{content:'';width:14px;height:1px;background:#d4756a}
 .ftr-col ul{list-style:none}
-.ftr-col li{font-size:.82rem;line-height:2.2;color:color-mix(in srgb,var(--bg) 40%,transparent)}
-.ftr-col a{color:color-mix(in srgb,var(--bg) 40%,transparent);text-decoration:none;transition:color .3s}.ftr-col a:hover{color:var(--red)}
-.ftr-col p{font-size:.82rem;line-height:1.85;color:color-mix(in srgb,var(--bg) 40%,transparent)}
-.ftr-col .ftr-phone{font-family:var(--hd);font-size:1rem;color:var(--red);text-decoration:none;transition:color .3s;display:inline-block;margin-bottom:.4rem}
+.ftr-col li{font-size:.82rem;line-height:2.2;color:color-mix(in srgb,var(--bg) 60%,transparent)}
+.ftr-col a{color:color-mix(in srgb,var(--bg) 60%,transparent);text-decoration:none;transition:color .3s}.ftr-col a:hover{color:#d4756a}
+.ftr-col p{font-size:.82rem;line-height:1.85;color:color-mix(in srgb,var(--bg) 60%,transparent)}
+.ftr-col .ftr-phone{font-family:var(--hd);font-size:1rem;color:#d4756a;text-decoration:none;transition:color .3s;display:inline-block;margin-bottom:.4rem}
 .ftr-col .ftr-phone:hover{color:var(--bg)}
 .ftr-divider{border:none;border-top:1px solid color-mix(in srgb,var(--bg) 8%,transparent);margin:0}
 .ftr-bottom{display:flex;justify-content:space-between;align-items:center;padding:1.25rem clamp(2rem,5vw,4rem) 5rem;position:relative;z-index:1}
-.ftr-copy{font-size:.6rem;color:color-mix(in srgb,var(--bg) 20%,transparent);letter-spacing:.08em}
-.ftr-back{font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:color-mix(in srgb,var(--bg) 20%,transparent);text-decoration:none;transition:color .3s}.ftr-back:hover{color:var(--red)}
+.ftr-copy{font-size:.6rem;color:color-mix(in srgb,var(--bg) 50%,transparent);letter-spacing:.08em}
+.ftr-back{font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:color-mix(in srgb,var(--bg) 50%,transparent);text-decoration:none;transition:color .3s}.ftr-back:hover{color:#d4756a}
 @media(max-width:900px){.ftr-top{grid-template-columns:1fr 1fr}.ftr-brand{grid-column:span 2}}
 @media(max-width:640px){.ftr-top{grid-template-columns:1fr}.ftr-brand{grid-column:1}.ftr-bottom{flex-direction:column;gap:.5rem;text-align:center}}
 
@@ -281,7 +281,7 @@ body{padding-bottom:56px}
 .k-gallery-item img{width:100%;height:clamp(300px,42vw,480px);object-fit:cover;transition:transform .6s var(--ease);filter:brightness(.85)saturate(1.1)}
 .k-gallery-item:hover img{transform:scale(1.06);filter:brightness(1)saturate(1.2)}
 .k-gallery-item-label{position:absolute;bottom:0;left:0;right:0;padding:2rem 1.5rem 1.5rem;background:linear-gradient(transparent,rgba(28,25,21,.8));font-family:var(--hd);font-size:.9rem;color:rgba(255,255,255,.85);letter-spacing:.02em}
-.k-gallery-hint{padding:1.5rem clamp(2rem,5vw,4rem) 0;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mut);display:flex;align-items:center;gap:.5rem}
+.k-gallery-hint{padding:1.5rem clamp(2rem,5vw,4rem) 0;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text);display:flex;align-items:center;gap:.5rem}
 .k-gallery-hint::before{content:'';width:20px;height:1px;background:var(--mut)}
 
 /* RESPONSIVE */
@@ -359,6 +359,7 @@ body{padding-bottom:56px}
   </ul>
 </nav>
 
+<main>
 <!-- ═══ 1. HERO ═══ -->
 <section class="hero" style="scroll-snap-align:start">
   <div class="hero-txt">
@@ -458,11 +459,11 @@ body{padding-bottom:56px}
       <h2 class="sh rv d1">Classic Barbering, Done Right</h2>
     </div>
     <div class="svc-track" id="svc-track">
-      <div class="svc-card"><div class="svc-num">01</div><h3>Haircut</h3><p>Precision cuts tailored to your style. Fades, tapers, classic side parts, textured crops&mdash;done with clippers, shears, and a steady hand.</p></div>
-      <div class="svc-card"><div class="svc-num">02</div><h3>Beard Trim</h3><p>Shaped and cleaned up, from a quick edge-up to a full sculpt. Hot towel finish. Your beard, but sharper.</p></div>
-      <div class="svc-card"><div class="svc-num">03</div><h3>Straight Razor Shave</h3><p>Hot lather, warm towel, straight blade. The way it was done before everything got fast and disposable.</p></div>
-      <div class="svc-card"><div class="svc-num">04</div><h3>Kids&rsquo; Cuts</h3><p>Patient, careful, and no tears (usually). Paul works with kids the same way he works with everyone&mdash;with care.</p></div>
-      <div class="svc-card"><div class="svc-num">05</div><h3>Beard Design</h3><p>Custom beard shaping for every face. Clean lines, natural flow, and the kind of shape that looks like it grew that way.</p></div>
+      <div class="svc-card"><div class="svc-num" aria-hidden="true">01</div><h3>Haircut</h3><p>Precision cuts tailored to your style. Fades, tapers, classic side parts, textured crops&mdash;done with clippers, shears, and a steady hand.</p></div>
+      <div class="svc-card"><div class="svc-num" aria-hidden="true">02</div><h3>Beard Trim</h3><p>Shaped and cleaned up, from a quick edge-up to a full sculpt. Hot towel finish. Your beard, but sharper.</p></div>
+      <div class="svc-card"><div class="svc-num" aria-hidden="true">03</div><h3>Straight Razor Shave</h3><p>Hot lather, warm towel, straight blade. The way it was done before everything got fast and disposable.</p></div>
+      <div class="svc-card"><div class="svc-num" aria-hidden="true">04</div><h3>Kids&rsquo; Cuts</h3><p>Patient, careful, and no tears (usually). Paul works with kids the same way he works with everyone&mdash;with care.</p></div>
+      <div class="svc-card"><div class="svc-num" aria-hidden="true">05</div><h3>Beard Design</h3><p>Custom beard shaping for every face. Clean lines, natural flow, and the kind of shape that looks like it grew that way.</p></div>
     </div>
     <p class="svc-hint">Drag to explore</p>
   </div>
@@ -532,6 +533,7 @@ body{padding-bottom:56px}
   </div>
 </section>
 
+</main>
 <div class="sticky"><div class="sticky-row"><a href="tel:5412654821" class="s-call">Call Now</a><a href="#" class="s-book" data-book>Book Appointment</a></div></div>
 <footer class="ftr">
   <div class="ftr-stripe"></div>
